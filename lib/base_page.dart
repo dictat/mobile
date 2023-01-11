@@ -8,11 +8,15 @@ final _navigatorKeys = <TabItem, GlobalKey<NavigatorState>>{
   TabItem.settings: GlobalKey<NavigatorState>(),
 };
 
+// 一つ前にタップされたタブ
+var oldTapIndex;
+
 class BasePage extends HookWidget {
   const BasePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     final currentTab = useState(TabItem.home);
     return Container(
       decoration: BoxDecoration(
@@ -25,6 +29,7 @@ class BasePage extends HookWidget {
               ])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
+        drawer: Drawer(),
         body: Stack(
           children: TabItem.values
               .map(
@@ -63,14 +68,21 @@ class BasePage extends HookWidget {
               .toList(),
           onTap: (index) {
             final selectedTab = TabItem.values[index];
+            if (oldTapIndex == null){
+              oldTapIndex = 0;
+            }
             if (currentTab.value == selectedTab) {
-              _navigatorKeys[selectedTab]
-                  ?.currentState
-                  ?.popUntil((route) => route.isFirst);
+              _navigatorKeys[selectedTab]?.currentState?.popUntil((route) => route.isFirst);
             } else {
               // 未選択
+              final selectedOldTab = TabItem.values[oldTapIndex];
+              // TOPに戻しておく
+              _navigatorKeys[selectedOldTab]?.currentState?.popUntil((route) => route.isFirst);
               currentTab.value = selectedTab;
             }
+
+            //過去のTAPを保存
+            oldTapIndex = index;
           },
         ),
       ),

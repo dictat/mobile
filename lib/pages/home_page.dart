@@ -5,12 +5,12 @@ import 'package:mobile/pages/detail_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
     final pageTitle = TabItem.home.title;
     return Scaffold(
-      appBar: CustomerAppBar(),
+      drawer: Drawer(),
+      appBar: CustomerAppBar(pageTitle),
       backgroundColor: Colors.transparent,
       body: Center(
         child: Column(

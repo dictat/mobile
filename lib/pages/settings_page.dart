@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile/pages/custom_app_bar.dart';
 import 'package:mobile/enums/tab_item.dart';
 import 'package:mobile/pages/detail_page.dart';
 
@@ -9,7 +10,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final pageTitle = TabItem.settings.title;
     return Scaffold(
-      appBar: AppBar(title: Text(pageTitle)),
+      appBar: CustomerAppBar(pageTitle),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
