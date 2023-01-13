@@ -13,14 +13,13 @@ class CustomerAppBar extends StatelessWidget with PreferredSizeWidget {
     this.name = name;
   }
 
-
   @override
   Widget build(BuildContext context) {
 
     return AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: leadingSelect(),
+        leading: leadingSelect(context),
         actions: [
           Container(
               margin: const EdgeInsets.only(right: 20),
@@ -32,14 +31,16 @@ class CustomerAppBar extends StatelessWidget with PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(58.0);
+  Size get preferredSize => const Size.fromHeight(46.0);
 
-  Widget leadingSelect() {
+  Widget leadingSelect(BuildContext context) {
     switch (this.name) {
       case "ホーム":
+
         return IconButton(
-          icon: Icon(Icons.person_search), onPressed: () {  },
+          icon: Icon(Icons.person_search), onPressed: () => Scaffold.of(context).openDrawer(),
         );
+        return const Icon(Icons.add_a_photo);
       case "タイムライン":
         return const Icon(Icons.add_a_photo);
       default:

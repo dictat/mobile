@@ -10,6 +10,7 @@ final _navigatorKeys = <TabItem, GlobalKey<NavigatorState>>{
 
 // 一つ前にタップされたタブ
 var oldTapIndex;
+final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
 class BasePage extends HookWidget {
   const BasePage({super.key});
@@ -29,7 +30,7 @@ class BasePage extends HookWidget {
               ])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        drawer: Drawer(),
+
         body: Stack(
           children: TabItem.values
               .map(
