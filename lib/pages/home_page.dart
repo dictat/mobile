@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/pages/custom_app_bar.dart';
-import 'package:mobile/enums/tab_item.dart';
-import 'package:mobile/pages/profile_detail_page.dart';
+
+import 'package:mobile/function/import.dart';
+
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final CountProvider countProvider = Provider.of<CountProvider>(context, listen: true);
     final pageTitle = TabItem.home.title;
 
     return Scaffold(
@@ -40,6 +42,7 @@ class HomePage extends StatelessWidget {
             Text(pageTitle),
             ElevatedButton(
               onPressed: () {
+                countProvider.incrementCounter();
                 Navigator.of(context).push(
                     //CustomPageRoute(DetailPage()),
                   MaterialPageRoute(

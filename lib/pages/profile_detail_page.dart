@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/pages/custom_app_bar.dart';
-import 'package:mobile/models/profile_model.dart';
-import 'package:mobile/function/profile_function.dart';
 
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobile/function/import.dart';
 
 Profile profile = Profile.profile;
 
@@ -19,49 +16,60 @@ class ProfileDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    profile = Profile.profile;
+
     double widthContainerSize = (MediaQuery.of(context).size.width) - 16;
     var profileFunction = ProfileFunction();
 
-    return Scaffold(
-      appBar: CustomerAppBar("test"),
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ImageContainerView(),
-            Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                width: widthContainerSize,
-                child: Column(
-                  children: [
-                    Text(profile.username,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 30.sp,
-                            color: Colors.black)),
-                    Text(
-                        "${profile.birthday} | ${profile.resident} | ${profileFunction.getGenderName(profile.gender)}",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w100,
-                            fontSize: 20.sp,
-                            color: Colors.black)),
-                    Text(profileFunction.getSexualListName(profile.sexual),
-                        style: TextStyle(
-                            fontWeight: FontWeight.w100,
-                            fontSize: 20.sp,
-                            color: Colors.black))
-                  ],
+    final CountProvider countProvider = Provider.of<CountProvider>(context, listen: true);
+
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<CountProvider>(
+          create: (context) => CountProvider(),
+        ),
+      ],
+
+      child: Scaffold(
+        appBar: CustomerAppBar("test"),
+        backgroundColor: Colors.transparent,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              ImageContainerView(),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  width: widthContainerSize,
+                  child: Column(
+                    children: [
+                      Text(profile.username,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 30.sp,
+                              color: Colors.black)),
+                      Text(
+                          "${profile.birthday} | ${profile.resident} | ${profileFunction.getGenderName(profile.gender)}",
+                          style: TextStyle(
+                              fontWeight: FontWeight.w100,
+                              fontSize: 20.sp,
+                              color: Colors.black)),
+                      Text(profileFunction.getSexualListName(profile.sexual),
+                          style: TextStyle(
+                              fontWeight: FontWeight.w100,
+                              fontSize: 20.sp,
+                              color: Colors.black)),
+                      Text(countProvider.counter.toString(),),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            ProfileContentsView(),
-          ],
+              ProfileContentsView(),
+            ],
+          ),
         ),
       ),
     );
@@ -82,6 +90,7 @@ class ProfileDetailPage extends StatelessWidget {
     );
   }
 }
+
 
 class ProfileContentsView extends StatefulWidget {
   @override
@@ -106,123 +115,132 @@ class _ProfileContentsViewState extends State<ProfileContentsView>
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      TabBar(
-        labelColor: Colors.deepPurple.shade800,
-        unselectedLabelColor: Colors.blueGrey.shade400,
-        indicatorColor: Colors.blue.shade800,
-        overlayColor: MaterialStateProperty.resolveWith<Color?>(
-          (Set<MaterialState> states) {
-            if (states.contains(MaterialState.hovered))
-              return Colors.amberAccent; //<-- SEE HERE
-            return null;
+    return Container(
+      color: Colors.white,
+      child: Column(children: [
+        TabBar(
+          labelColor: Colors.deepPurple.shade800,
+          unselectedLabelColor: Colors.blueGrey.shade400,
+          indicatorColor: Colors.blue.shade800,
+          overlayColor: MaterialStateProperty.resolveWith<Color?>(
+            (Set<MaterialState> states) {
+              if (states.contains(MaterialState.hovered))
+                return Colors.amberAccent; //<-- SEE HERE
+              return null;
+            },
+          ),
+          tabs: <Tab>[
+            Tab(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.account_box),
+                ],
+              ),
+            ),
+            Tab(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.record_voice_over),
+                ],
+              ),
+            ),
+            Tab(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.music_note),
+                ],
+              ),
+            ),
+            Tab(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(Icons.image),
+                ],
+              ),
+            ),
+          ],
+          controller: tabController,
+          onTap: (int index) {
+            setState(() {
+              selectedIndex = index;
+              tabController.animateTo(index);
+            });
           },
         ),
-        tabs: <Tab>[
-          Tab(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(Icons.account_box),
-              ],
-            ),
-          ),
-          Tab(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(Icons.record_voice_over),
-              ],
-            ),
-          ),
-          Tab(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(Icons.music_note),
-              ],
-            ),
-          ),
-          Tab(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Icon(Icons.image),
-              ],
-            ),
-          ),
-        ],
-        controller: tabController,
-        onTap: (int index) {
-          setState(() {
-            selectedIndex = index;
-            tabController.animateTo(index);
-          });
-        },
-      ),
-      IndexedStack(
-        children: <Widget>[
-          Visibility(
-            child: Container(
-              height: 200.h,
-              color: Colors.yellow,
-              child: Center(
-                child: Text('Content left'),
+        IndexedStack(
+          children: <Widget>[
+            Visibility(
+              child: Container(
+                height: 200.h,
+                color: Colors.yellow,
+                child: Center(
+                  child: Text('Content left'),
+                ),
               ),
+              maintainState: true,
+              visible: selectedIndex == 0,
             ),
-            maintainState: true,
-            visible: selectedIndex == 0,
-          ),
-          Visibility(
-            child: Container(
-              height: 1000.h,
-              color: Colors.red,
-              child: Center(
-                child: Text('Content right'),
+            Visibility(
+              child: Container(
+                height: 1000.h,
+                color: Colors.red,
+                child: Center(
+                  child: Text('Content right'),
+                ),
               ),
+              maintainState: true,
+              visible: selectedIndex == 1,
             ),
-            maintainState: true,
-            visible: selectedIndex == 1,
-          ),
-          Visibility(
-            child: Container(
-              height: 1000.h,
-              color: Colors.red,
-              child: Center(
-                child: Text('Content right'),
+            Visibility(
+              child: Container(
+                height: 1000.h,
+                color: Colors.red,
+                child: Center(
+                  child: Text('Content right'),
+                ),
               ),
+              maintainState: true,
+              visible: selectedIndex == 2,
             ),
-            maintainState: true,
-            visible: selectedIndex == 2,
-          ),
-          Visibility(
-            child: Container(
-              height: 1000.h,
-              color: Colors.red,
-              child: Center(
-                child: Text('Content right'),
+            Visibility(
+              child: Container(
+                height: 1000.h,
+                color: Colors.red,
+                child: Center(
+                  child: Text('Content right'),
+                ),
               ),
+              maintainState: true,
+              visible: selectedIndex == 3,
             ),
-            maintainState: true,
-            visible: selectedIndex == 3,
-          ),
-        ],
-        index: selectedIndex,
-      ),
-    ]);
+          ],
+          index: selectedIndex,
+        ),
+      ]),
+    );
   }
 }
 
 class ImageContainerView extends StatefulWidget {
+
   @override
   _ImageContainerViewState createState() => _ImageContainerViewState();
 }
 
 class _ImageContainerViewState extends State<ImageContainerView> {
+  @override
+  void initState(){
+    profile = Profile.profile;
+  }
+
   int active = 0;
 
   @override
@@ -250,6 +268,7 @@ class _ImageContainerViewState extends State<ImageContainerView> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {
+                    Provider.of<int>(context);
                     active = i;
                   });
                 },

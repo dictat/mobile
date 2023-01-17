@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/enums/tab_item.dart';
-import 'package:mobile/pages/detail_page.dart';
-import 'package:mobile/pages/custom_app_bar.dart';
+import 'package:mobile/function/import.dart';
 
 class TimelinePage extends StatelessWidget {
   const TimelinePage({super.key});
@@ -11,6 +9,9 @@ class TimelinePage extends StatelessWidget {
     var list = ["メッセージ1", "メッセージ2", "メッセージ3", "メッセージ4", "メッセージ5",];
     final pageTitle = TabItem.timeline.title;
 
+    // テスト
+    final CountProvider countProvider = Provider.of<CountProvider>(context, listen: true);
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: CustomerAppBar(pageTitle),
@@ -19,7 +20,7 @@ class TimelinePage extends StatelessWidget {
           ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               if (index >= list.length) {
-                list.addAll(["メッセージ6","メッセージ7","メッセージ8","メッセージ9",]);
+                list.addAll(["メッセージ6","メッセージ7","メッセージ8","メッセージ9","count="+countProvider.counter.toString()]);
               }
               return _messageItem(list[index]);
             },
