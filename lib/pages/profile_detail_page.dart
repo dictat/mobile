@@ -3,7 +3,16 @@ import 'package:mobile/pages/custom_app_bar.dart';
 import 'package:mobile/models/profile_model.dart';
 import 'package:mobile/function/profile_function.dart';
 
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 Profile profile = Profile.profile;
+
+class TabInfo {
+  String label;
+  Widget widget;
+
+  TabInfo(this.label, this.widget);
+}
 
 class ProfileDetailPage extends StatelessWidget {
   int imageNo = 0;
@@ -11,7 +20,7 @@ class ProfileDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     profile = Profile.profile;
-    double widthContainerSize = (MediaQuery.of(context).size.width ) - 16;
+    double widthContainerSize = (MediaQuery.of(context).size.width) - 16;
     var profileFunction = ProfileFunction();
 
     return Scaffold(
@@ -29,33 +38,29 @@ class ProfileDetailPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 width: widthContainerSize,
-
                 child: Column(
                   children: [
                     Text(profile.username,
                         style: TextStyle(
                             fontWeight: FontWeight.w900,
-                            fontSize: 24,
+                            fontSize: 30.sp,
                             color: Colors.black)),
-                    Text("${profile.birthday} | ${profile.resident} | ${profileFunction.getGenderName(profile.gender)}",style: TextStyle(
-                        fontWeight: FontWeight.w100,
-                        fontSize: 16,
-                        color: Colors.black)),
-                    Text(profileFunction.getSexualListName(profile.sexual),style: TextStyle(
-                        fontWeight: FontWeight.w100,
-                        fontSize: 16,
-                        color: Colors.black))
+                    Text(
+                        "${profile.birthday} | ${profile.resident} | ${profileFunction.getGenderName(profile.gender)}",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w100,
+                            fontSize: 20.sp,
+                            color: Colors.black)),
+                    Text(profileFunction.getSexualListName(profile.sexual),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w100,
+                            fontSize: 20.sp,
+                            color: Colors.black))
                   ],
                 ),
               ),
             ),
-
-            myContainer(color: Colors.blue, text: 'START', size: 100),
-            myContainer(color: Colors.orange),
-            myContainer(color: Colors.red),
-            myContainer(color: Colors.blue),
-            myContainer(color: Colors.orange),
-            myContainer(color: Colors.red, text: 'END'),
+            ProfileContentsView(),
           ],
         ),
       ),
@@ -75,6 +80,140 @@ class ProfileDetailPage extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class ProfileContentsView extends StatefulWidget {
+  @override
+  _ProfileContentsViewState createState() => _ProfileContentsViewState();
+}
+
+class _ProfileContentsViewState extends State<ProfileContentsView>
+    with SingleTickerProviderStateMixin {
+  late TabController tabController;
+  int selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    tabController = TabController(
+      initialIndex: selectedIndex,
+      length: 4,
+      vsync: this,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      TabBar(
+        labelColor: Colors.deepPurple.shade800,
+        unselectedLabelColor: Colors.blueGrey.shade400,
+        indicatorColor: Colors.blue.shade800,
+        overlayColor: MaterialStateProperty.resolveWith<Color?>(
+          (Set<MaterialState> states) {
+            if (states.contains(MaterialState.hovered))
+              return Colors.amberAccent; //<-- SEE HERE
+            return null;
+          },
+        ),
+        tabs: <Tab>[
+          Tab(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(Icons.account_box),
+              ],
+            ),
+          ),
+          Tab(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(Icons.record_voice_over),
+              ],
+            ),
+          ),
+          Tab(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(Icons.music_note),
+              ],
+            ),
+          ),
+          Tab(
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(Icons.image),
+              ],
+            ),
+          ),
+        ],
+        controller: tabController,
+        onTap: (int index) {
+          setState(() {
+            selectedIndex = index;
+            tabController.animateTo(index);
+          });
+        },
+      ),
+      IndexedStack(
+        children: <Widget>[
+          Visibility(
+            child: Container(
+              height: 200.h,
+              color: Colors.yellow,
+              child: Center(
+                child: Text('Content left'),
+              ),
+            ),
+            maintainState: true,
+            visible: selectedIndex == 0,
+          ),
+          Visibility(
+            child: Container(
+              height: 1000.h,
+              color: Colors.red,
+              child: Center(
+                child: Text('Content right'),
+              ),
+            ),
+            maintainState: true,
+            visible: selectedIndex == 1,
+          ),
+          Visibility(
+            child: Container(
+              height: 1000.h,
+              color: Colors.red,
+              child: Center(
+                child: Text('Content right'),
+              ),
+            ),
+            maintainState: true,
+            visible: selectedIndex == 2,
+          ),
+          Visibility(
+            child: Container(
+              height: 1000.h,
+              color: Colors.red,
+              child: Center(
+                child: Text('Content right'),
+              ),
+            ),
+            maintainState: true,
+            visible: selectedIndex == 3,
+          ),
+        ],
+        index: selectedIndex,
+      ),
+    ]);
   }
 }
 
@@ -116,17 +255,18 @@ class _ImageContainerViewState extends State<ImageContainerView> {
                 },
                 // 対象の画像を記述
                 child: Container(
+                  padding: EdgeInsets.all(1.0),
                   width: widthSize,
                   decoration: active == i
                       ? BoxDecoration(
-                          border: Border.all(color: Colors.blue, width: 1),
+                          border: Border.all(color: Colors.blue, width: 2),
                           borderRadius: BorderRadius.circular(8.0),
                         )
                       : null,
                   child: Image(
                     image: imagePaths[i],
-                    width: widthSize - 2,
-                    height: widthSize - 2,
+                    width: (widthSize - 2).w,
+                    height: (widthSize - 2).h,
                   ),
                 ),
               ),
@@ -134,53 +274,5 @@ class _ImageContainerViewState extends State<ImageContainerView> {
         ]),
       )
     ]);
-  }
-}
-
-class ClickGood extends StatefulWidget {
-  @override
-  _ClickGoodState createState() => _ClickGoodState();
-}
-
-class _ClickGoodState extends State<ClickGood> {
-  bool _active = false;
-
-  void _handleTap() {
-    setState(() {
-      _active = !_active;
-    });
-  }
-
-  Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: _handleTap,
-        child: Container(
-          child: Column(children: <Widget>[
-            Container(
-              child: Center(
-                child: new Icon(
-                  Icons.thumb_up,
-                  color: _active ? Colors.orange[700] : Colors.grey[500],
-                  size: 100.0,
-                ),
-              ),
-              width: 200.0,
-              height: 200.0,
-            ),
-            Container(
-              child: Center(
-                child: Text(
-                  _active ? 'Active' : 'Inactive',
-                  style: TextStyle(fontSize: 32.0, color: Colors.white),
-                ),
-              ),
-              width: 200.0,
-              height: 50.0,
-              decoration: BoxDecoration(
-                color: _active ? Colors.orange[700] : Colors.grey[600],
-              ),
-            ),
-          ]),
-        ));
   }
 }
