@@ -17,6 +17,7 @@ class Profile {
 
   final String? resident;
   final List? sexual;
+  final String nickname;
 
   /*
   "phone": "09046180911",
@@ -80,7 +81,9 @@ class Profile {
       this.email,
       this.fullName,
       this.gender,
-      this.birthday,this.resident,this.sexual});
+      this.birthday,
+      this.resident,
+      this.sexual,required this.nickname,});
 
   static Profile profile = Profile(
     id: 1,
@@ -89,12 +92,48 @@ class Profile {
     subTitle: "サブタイトル",
     birthday: "2001-01-01",
     resident: "東京都",
-    gender:"female",
-    sexual:["pansexual", "aromantic"],
+    gender: "female",
+    sexual: ["pansexual", "aromantic"],
     imagePath1: "https://dummyimage.com/512x512/000/fff&text=1page",
     imagePath2: "https://dummyimage.com/512x512/fff/000&text=2page",
     imagePath3: "https://dummyimage.com/512x512/fff/000&text=3page",
     imagePath4: "https://dummyimage.com/512x512/fff/000&text=4page",
     imagePath5: "https://dummyimage.com/512x512/fff/000&text=5page",
+      nickname: "にくねーむ",
   );
+
+  static List<Profile> profiles = [
+    Profile(
+      id: 1,
+      username: "くらしあ",
+      title: "ここに名前が入る",
+      subTitle: "サブタイトル",
+      birthday: "2001-01-01",
+      resident: "東京都",
+      gender: "female",
+      sexual: ["pansexual", "aromantic"],
+      imagePath1: "https://dummyimage.com/512x512/000/fff&text=1page",
+      imagePath2: "https://dummyimage.com/512x512/fff/000&text=2page",
+      imagePath3: "https://dummyimage.com/512x512/fff/000&text=3page",
+      imagePath4: "https://dummyimage.com/512x512/fff/000&text=4page",
+      imagePath5: "https://dummyimage.com/512x512/fff/000&text=5page",
+      nickname: "にくねーむ",
+    ),
+    Profile(
+      id: 2,
+      username: "セゾンユーズ",
+      title: "ここに名前が入る",
+      subTitle: "サブタイトル",
+      birthday: "2001-01-01",
+      resident: "東京都",
+      gender: "female",
+      sexual: ["pansexual", "aromantic"],
+      imagePath1: "https://dummyimage.com/512x512/000/fff&text=1page",
+      imagePath2: "https://dummyimage.com/512x512/fff/000&text=2page",
+      imagePath3: "https://dummyimage.com/512x512/fff/000&text=3page",
+      imagePath4: "https://dummyimage.com/512x512/fff/000&text=4page",
+      imagePath5: "https://dummyimage.com/512x512/fff/000&text=5page",
+      nickname: "にくねーむずずず",
+    ),
+  ];
 }

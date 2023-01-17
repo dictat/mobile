@@ -35,7 +35,15 @@ class HomePage extends StatelessWidget {
       ),
       appBar: CustomerAppBar(pageTitle),
       backgroundColor: Colors.transparent,
-      body: Center(
+      body:
+      Consumer<ProfileProvider>(
+        builder: (context, profileProvider, _) {
+          return ProfileListWidget(profiles: profileProvider.profileList);
+        },
+      ),
+
+      /*
+      Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -54,7 +62,7 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      ),*/
     );
   }
 }

@@ -20,6 +20,8 @@ class MyApp extends StatelessWidget {
         providers: [
           Provider<CountProvider>(create: (_) => CountProvider()),
           ChangeNotifierProvider(create: (_) => CountProvider()),
+          Provider<ProfileProvider>(create: (_) => ProfileProvider()),
+          ChangeNotifierProvider(create: (_) => ProfileProvider()),
         ],
         child: MaterialApp(
           title: 'Flutter Demo',

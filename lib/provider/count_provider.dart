@@ -9,4 +9,8 @@ class CountProvider with ChangeNotifier {
     counter++;
     notifyListeners();
   }
+
+  String getCounter() {
+    return counter.toString();
+  }
 }

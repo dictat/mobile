@@ -20,7 +20,7 @@ class TimelinePage extends StatelessWidget {
           ListView.builder(
             itemBuilder: (BuildContext context, int index) {
               if (index >= list.length) {
-                list.addAll(["メッセージ6","メッセージ7","メッセージ8","メッセージ9","count="+countProvider.counter.toString()]);
+                list.addAll(["メッセージ6","メッセージ7","メッセージ8","メッセージ9","count=${countProvider.getCounter()}"]);
               }
               return _messageItem(list[index]);
             },

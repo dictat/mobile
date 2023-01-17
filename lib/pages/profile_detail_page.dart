@@ -22,14 +22,7 @@ class ProfileDetailPage extends StatelessWidget {
 
     final CountProvider countProvider = Provider.of<CountProvider>(context, listen: true);
 
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<CountProvider>(
-          create: (context) => CountProvider(),
-        ),
-      ],
-
-      child: Scaffold(
+    return Scaffold(
         appBar: CustomerAppBar("test"),
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
@@ -71,7 +64,7 @@ class ProfileDetailPage extends StatelessWidget {
             ],
           ),
         ),
-      ),
+
     );
   }
 
@@ -90,7 +83,6 @@ class ProfileDetailPage extends StatelessWidget {
     );
   }
 }
-
 
 class ProfileContentsView extends StatefulWidget {
   @override
