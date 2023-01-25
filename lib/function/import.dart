@@ -6,6 +6,7 @@ export 'package:provider/provider.dart';
 // provider
 export 'package:mobile/provider/count_provider.dart';
 export 'package:mobile/provider/profile_provider.dart';
+export 'package:mobile/provider/connection_provider.dart';
 
 // widget
 export 'package:mobile/widget/profile_list_widget.dart';

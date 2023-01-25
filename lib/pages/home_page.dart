@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:mobile/function/import.dart';
 
-
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final CountProvider countProvider = Provider.of<CountProvider>(context, listen: true);
+    final CountProvider countProvider =
+        Provider.of<CountProvider>(context, listen: true);
     final pageTitle = TabItem.home.title;
 
     return Scaffold(
@@ -28,15 +27,19 @@ class HomePage extends StatelessWidget {
             ),
             ListTile(
               title: Text('item2'),
-              onTap: () {},
+              onTap: () {
+                /*
+                countProvider.incrementCounter();
+                print(countProvider.counter);
+                 */
+              },
             ),
           ],
         ),
       ),
       appBar: CustomerAppBar(pageTitle),
       backgroundColor: Colors.transparent,
-      body:
-      Consumer<ProfileProvider>(
+      body: Consumer<ProfileProvider>(
         builder: (context, profileProvider, _) {
           return ProfileListWidget(profiles: profileProvider.profileList);
         },
@@ -80,10 +83,10 @@ class CustomPageRoute<T> extends PageRoute<T> {
 
   @override
   Widget buildPage(
-      BuildContext context,
-      Animation<double> animation,
-      Animation<double> secondaryAnimation,
-      ) {
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+  ) {
     // ここを変えればいろんなトランジションにできるぞ
     return FadeTransition(
       opacity: animation,
@@ -96,6 +99,6 @@ class CustomPageRoute<T> extends PageRoute<T> {
 
   @override
   Duration get transitionDuration => const Duration(
-    milliseconds: 1, // 変化にかかる時間を指定
-  );
+        milliseconds: 1, // 変化にかかる時間を指定
+      );
 }

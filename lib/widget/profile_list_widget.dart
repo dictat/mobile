@@ -34,7 +34,7 @@ class ProfileListWidget extends StatelessWidget {
           color: Colors.red.shade100,
           child: Text("test")));
     }
-    
+
     return tmp;
   }
 }
