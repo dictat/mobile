@@ -43,6 +43,10 @@ class CustomerAppBar extends StatelessWidget with PreferredSizeWidget {
         return const Icon(Icons.add_a_photo);
       case "タイムライン":
         return const Icon(Icons.add_a_photo);
+      case "メッセージ":
+        return const Icon(Icons.add_a_photo);
+      case "コミュニティ":
+        return const Icon(Icons.add_a_photo);
       default:
         return SizedBox.shrink();
     }

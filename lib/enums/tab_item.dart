@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/pages/home_page.dart';
-import 'package:mobile/pages/settings_page.dart';
-import 'package:mobile/pages/timeline_page.dart';
-
-import 'package:community_material_icon/community_material_icon.dart';
+import 'package:mobile/function/import.dart';
 
 enum TabItem {
   home(
@@ -25,7 +21,7 @@ enum TabItem {
   message(
   title: 'メッセージ',
   icon: CommunityMaterialIcons.message,
-  page: SettingsPage(),
+  page: ChatPage(),
   ),
   settings(
     title: '設定',

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/function/import.dart';
+import 'package:like_button/like_button.dart';
 
 class TimelinePage extends StatelessWidget {
   const TimelinePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+
     final pageTitle = TabItem.timeline.title;
 
     // テスト
@@ -23,33 +26,6 @@ class TimelinePage extends StatelessWidget {
             return TimeLineWidget(timeline: connectionProvider.getTimeLine());
           },
         ),
-      ),
-    );
-  }
-
-  Widget _messageItem(String title) {
-    return Container(
-      margin: const EdgeInsets.all(10),
-      decoration: new BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
-      ),
-      height: 90,
-      child: ListTile(
-        leading: const CircleAvatar(
-          backgroundImage: NetworkImage(
-              'https://avatars.githubusercontent.com/u/7200238?s=64&v=4'),
-        ),
-        title: Text(
-          title,
-          style: TextStyle(color: Colors.black, fontSize: 18.0),
-        ),
-        onTap: () {
-          print("onTap called.");
-        }, // タップ
-        onLongPress: () {
-          print("onLongTap called.");
-        }, // 長押し
       ),
     );
   }
@@ -84,44 +60,70 @@ class TimeLineWidget extends StatelessWidget {
     final ConnectionProvider connectionProvider =
         Provider.of<ConnectionProvider>(context, listen: true);
     return Container(
-      margin: EdgeInsets.all(8.0.sp),
+      margin: EdgeInsets.all(8.0.w),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10.0.sp),
+        borderRadius: BorderRadius.circular(10.0),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.all(10.0.sp),
-                child: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://avatars.githubusercontent.com/u/7200238?s=64&v=4'),
+          Padding(
+            padding: const EdgeInsets.only(left:8.0,top:8.0,right:8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  child: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://avatars.githubusercontent.com/u/7200238?s=64&v=4'),
+                  ),
+                  width: 70.w,
+                  height: 60.sp,
                 ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("このへんに名前",
-                      style: TextStyle(
-                          fontSize: 17.sp, fontWeight: FontWeight.bold)),
-                  Text("1月1日",
-                      style: TextStyle(
-                        fontSize: 15.sp,
-                      )),
-                ],
-              ),
-            ],
+                Container(
+                  width: 280.w,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("このあたりにお名前を入れて。",
+                          style: TextStyle(
+                              fontSize: 17.sp, fontWeight: FontWeight.bold)),
+                      Text("1月1日",
+                          style: TextStyle(
+                            fontSize: 13.sp,
+                          )),
+                    ],
+                  ),
+                ),
+                Container(
+                    alignment: Alignment.centerRight,
+                    child: Icon(Icons.mode_edit_outlined,size: 20.sp,) //more_horiz
+                    ),
+              ],
+            ),
           ),
+          Padding(
+              padding: EdgeInsets.all(9.0.sp),
+              child: Text(
+                  "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいう"
+                      "えおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお",style: TextStyle(fontSize: 18.sp),)),
           Padding(
             padding: EdgeInsets.all(10.0.sp),
-            child: Text("あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお")
-          ),
-          Padding(
-              padding: EdgeInsets.all(10.0.sp),
-              child: Icon(Icons.favorite_border,color: Colors.deepPurple,)
+            child: LikeButton(
+              likeCount: 665,
+              isLiked: false,
+              likeBuilder: (bool isLiked) {
+                return Icon(Icons.favorite,
+                    color: isLiked ? Colors.deepPurple : Colors.grey);
+              },
+              circleColor:
+                  CircleColor(start: Color(0xff00ddff), end: Color(0xff0099cc)),
+              bubblesColor: BubblesColor(
+                dotPrimaryColor: Color(0xff33b5e5),
+                dotSecondaryColor: Color(0xff0099cc),
+              ),
+            ),
           ),
         ],
       ),
