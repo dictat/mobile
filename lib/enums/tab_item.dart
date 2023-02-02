@@ -24,8 +24,8 @@ enum TabItem {
   page: ChatPage(),
   ),
   settings(
-    title: '設定',
-    icon: Icons.settings,
+    title: 'マイページ',
+    icon: Icons.account_circle_outlined,
     page: SettingsPage(),
   );
 

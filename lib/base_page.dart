@@ -62,7 +62,32 @@ class BasePage extends HookWidget {
           items: TabItem.values
               .map(
                 (tabItem) => BottomNavigationBarItem(
-                  icon: Icon(tabItem.icon),
+                  icon: Stack(
+                    children: [
+                      Icon(tabItem.icon),
+                      Positioned(
+                        right: 0,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            shape: BoxShape.circle,
+                          ),
+                          constraints: BoxConstraints(
+                            minHeight: 12,
+                            minWidth: 12,
+                          ),
+                          child: Text(
+                            '1',
+                            style: TextStyle(
+                              fontSize: 8,
+                              color: Colors.white,
+                            ),
+                          ),
+                          alignment: Alignment.center,
+                        ),
+                      ),
+                    ],
+                  ),
                   label: tabItem.title,
                 ),
               )
