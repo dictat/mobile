@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mobile/pages/custom_app_bar.dart';
 import 'package:mobile/enums/tab_item.dart';
 import 'package:mobile/pages/detail_page.dart';
@@ -17,6 +18,16 @@ class SettingsPage extends StatelessWidget {
           children: [
             Text(pageTitle),
             ElevatedButton(
+                onPressed: () {
+                  _getCamera();
+                },
+                child: Text("カメラ")),
+            ElevatedButton(
+                onPressed: () {
+                  _getMusic();
+                },
+                child: Text("音楽")),
+            ElevatedButton(
               onPressed: () {
                 Navigator.push<void>(
                   context,
@@ -31,5 +42,26 @@ class SettingsPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  static const platform = const MethodChannel('test_camera');
+
+  Future<void> _getCamera() async {
+    String cameraLevel;
+    try {
+      await platform.invokeMethod('getCamera');
+    } on PlatformException catch (e) {
+      cameraLevel = "Failed to get camera";
+    }
+  }
+
+  Future<void> _getMusic() async {
+    String cameraLevel;
+    try {
+      final test = await platform.invokeMethod('getMusic');
+      print(test);
+    } on PlatformException catch (e) {
+      cameraLevel = "Failed to get camera";
+    }
   }
 }
