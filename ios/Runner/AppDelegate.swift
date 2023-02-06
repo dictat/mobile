@@ -21,7 +21,7 @@ import MediaPlayer // ここの追加を忘れずに。
               self.receiveCamera(result: result,controller: controller)
               return
             case "getMusic":
-            result(self.getMusic(result:result))
+              result(self.getMusic())
             return
             default:
               result(FlutterMethodNotImplemented)
@@ -39,19 +39,18 @@ import MediaPlayer // ここの追加を忘れずに。
         controller.present(pickerController,animated: true,completion: nil)
     }
 
-    func getMusic(result:FlutterResult) {
+    private func getMusic() -> Dictionary<String,Any>?{
           let item : MPMediaItem? = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
         if let uwItem = item {
             NSLog("Title : %@", uwItem.title!)
             NSLog("Artist : %@", uwItem.artist!)
             NSLog("AlbumTitle : %@", uwItem.albumTitle!)
             NSLog("Duration : %g", uwItem.playbackDuration)
-
+            var test: Dictionary = ["title": uwItem.title!, "Artist": uwItem.artist!,"AlbumTitle":uwItem.albumTitle!,"Duration":uwItem.playbackDuration] as [String : Any]
+        return test
         }
-        var test: Dictionary = ["title": "swift-salaryman", "url": "http://swift-salaryman.com/"]
-        NSLog("Durationsssss : %@", test)
-        result(test);
-       
+
+       return nil
     }
 }
 

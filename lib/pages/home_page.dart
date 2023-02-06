@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.transparent,
       body: Consumer<ProfileProvider>(
         builder: (context, profileProvider, _) {
-          return ProfileListWidget(profiles: profileProvider.profileList);
+          return ProfileListWidget(profiles: profileProvider.getProfileList());
         },
       ),
 

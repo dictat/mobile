@@ -51,7 +51,7 @@ class BasePage extends HookWidget {
           type: BottomNavigationBarType.fixed,
           currentIndex: TabItem.values.indexOf(currentTab.value),
           unselectedItemColor: Colors.white,
-          selectedItemColor: Colors.white,
+          selectedItemColor: Colors.amber,
           showUnselectedLabels: true,
           showSelectedLabels: true,
           selectedFontSize: 10,
@@ -71,13 +71,13 @@ class BasePage extends HookWidget {
                                   shape: BoxShape.circle,
                                 ),
                                 constraints: BoxConstraints(
-                                  minHeight: 12,
-                                  minWidth: 12,
+                                  minHeight: 16,
+                                  minWidth: 16,
                                 ),
                                 child: Text(
-                                  '3',
+                                  '99+',
                                   style: TextStyle(
-                                    fontSize: 8,
+                                    fontSize: 6,
                                     color: Colors.white,
                                   ),
                                 ),
