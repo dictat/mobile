@@ -43,6 +43,7 @@ dependencies:
   flutter_screenutil: ^5.3.1  # 追加
   provider: ^6.0.5
   like_button: ^2.0.5
+  flutter_bloc: ^8.1.1
 
 dev_dependencies:
   flutter_test:

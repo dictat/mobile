@@ -1,8 +1,10 @@
 export 'package:flutter/material.dart';
+export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:provider/provider.dart';
 export 'package:community_material_icon/community_material_icon.dart';
+
 
 // provider
 export 'package:mobile/provider/count_provider.dart';
@@ -18,6 +20,7 @@ export 'package:mobile/models/profile_model.dart';
 // function
 export 'package:mobile/function/profile_function.dart';
 export 'package:mobile/enums/tab_item.dart';
+export 'package:mobile/function/theme_cubit.dart';
 
 // UI
 export 'package:mobile/pages/custom_app_bar.dart';

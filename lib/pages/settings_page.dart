@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mobile/pages/custom_app_bar.dart';
-import 'package:mobile/enums/tab_item.dart';
-import 'package:mobile/pages/detail_page.dart';
+import 'package:mobile/function/import.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    bool _themeFlag = false;
     final pageTitle = TabItem.settings.title;
     return Scaffold(
       appBar: CustomerAppBar(pageTitle),
@@ -38,6 +37,15 @@ class SettingsPage extends StatelessWidget {
               },
               child: const Text('詳細ページへ'),
             ),
+            ElevatedButton(onPressed: (){
+
+              context
+                  .read<ThemeCubit>()
+                  .changeTheme(_themeFlag ? AppTheme.dark : AppTheme.light);
+
+                _themeFlag = !_themeFlag;
+            }, child: const Text('カラー変更'))
+
           ],
         ),
       ),

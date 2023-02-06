@@ -17,7 +17,6 @@ class BasePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final currentTab = useState(TabItem.home);
     return Container(
       decoration: BoxDecoration(
@@ -25,12 +24,11 @@ class BasePage extends HookWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Colors.deepPurple.shade800.withOpacity(0.8),
-                Colors.deepPurple.shade200.withOpacity(0.8)
-              ])),
+            Colors.deepPurple.shade800.withOpacity(0.8),
+            Colors.deepPurple.shade200.withOpacity(0.8)
+          ])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-
         body: Stack(
           children: TabItem.values
               .map(
@@ -48,13 +46,12 @@ class BasePage extends HookWidget {
               )
               .toList(),
         ),
-
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.deepPurple.shade800,
           type: BottomNavigationBarType.fixed,
           currentIndex: TabItem.values.indexOf(currentTab.value),
           unselectedItemColor: Colors.white,
-          selectedItemColor: Colors.white ,
+          selectedItemColor: Colors.white,
           showUnselectedLabels: true,
           showSelectedLabels: true,
           selectedFontSize: 10,
@@ -65,27 +62,29 @@ class BasePage extends HookWidget {
                   icon: Stack(
                     children: [
                       Icon(tabItem.icon),
-                      Positioned(
-                        right: 0,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            shape: BoxShape.circle,
-                          ),
-                          constraints: BoxConstraints(
-                            minHeight: 12,
-                            minWidth: 12,
-                          ),
-                          child: Text(
-                            '1',
-                            style: TextStyle(
-                              fontSize: 8,
-                              color: Colors.white,
-                            ),
-                          ),
-                          alignment: Alignment.center,
-                        ),
-                      ),
+                      tabItem.badges
+                          ? Positioned(
+                              right: 0,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.red,
+                                  shape: BoxShape.circle,
+                                ),
+                                constraints: BoxConstraints(
+                                  minHeight: 12,
+                                  minWidth: 12,
+                                ),
+                                child: Text(
+                                  '3',
+                                  style: TextStyle(
+                                    fontSize: 8,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                alignment: Alignment.center,
+                              ),
+                            )
+                          : const SizedBox(),
                     ],
                   ),
                   label: tabItem.title,
@@ -94,16 +93,20 @@ class BasePage extends HookWidget {
               .toList(),
           onTap: (index) {
             final selectedTab = TabItem.values[index];
-            if (oldTapIndex == null){
+            if (oldTapIndex == null) {
               oldTapIndex = 0;
             }
             if (currentTab.value == selectedTab) {
-              _navigatorKeys[selectedTab]?.currentState?.popUntil((route) => route.isFirst);
+              _navigatorKeys[selectedTab]
+                  ?.currentState
+                  ?.popUntil((route) => route.isFirst);
             } else {
               // 未選択
               final selectedOldTab = TabItem.values[oldTapIndex];
               // TOPに戻しておく
-              _navigatorKeys[selectedOldTab]?.currentState?.popUntil((route) => route.isFirst);
+              _navigatorKeys[selectedOldTab]
+                  ?.currentState
+                  ?.popUntil((route) => route.isFirst);
               currentTab.value = selectedTab;
             }
 
