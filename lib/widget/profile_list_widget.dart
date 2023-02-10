@@ -42,7 +42,7 @@ class ProfileListWidget extends StatelessWidget {
               print(value);
             });
 
-            Future<List> get = NetworkManager.getRequestUrlJson("https://jsonplaceholder.typicode.com/posts/",false);
+            Future<String> get = NetworkManager.getRequestUrl("https://jsonplaceholder.typicode.com/posts/",false);
             get.then((value){
               print(value);
             });

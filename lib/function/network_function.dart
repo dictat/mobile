@@ -1,25 +1,46 @@
 import 'package:mobile/function/import.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:http/retry.dart';
 
 class NetworkManager {
+  static String apiKey = "";
+
+  static init() async {
+    if (apiKey == "") {
+      apiKey = await SharedPreferencesManager.get("API_KEY", "normal");
+    }
+    return apiKey;
+  }
+
   // GETでデータを取得する。
   // auth = trueでログイン情報もセットで送る。
-  static Future<List> getRequestUrlJson(String url, bool? auth) async {
+  static Future<String> getRequestUrl(String url, bool? auth) async {
+    if (apiKey==""){
+      await init();
+    }
+
+    final client = RetryClient(http.Client());
     try {
-      var response = await http.get(Uri.parse(url));
-      // 確実にjsonならば変換をかける
-      var jsonget = json.decode(response.body);
+      var response =
+          await client.read(Uri.parse(url), headers: {"X-API-KEY": "{apiKey}"});
 
-      Iterable l = json.decode(response.body);
-      List<TestUser> posts = List<TestUser>.from(l.map((model)=> TestUser.fromJson(model)));
-      print(posts);
+      // TODO 暗号の解除
 
-      return posts;
+      return response;
     } catch (e) {
-      print(e);
+      client.close();
     }
     //List data = (json.decode(response.body) as Map<String, dynamic>)["data"];
-    return [];
+    return "Error";
+  }
+
+// POSTでデータを取得する。
+// auth = trueでログイン情報もセットで送る。
+
+  static Future<String> postRequestUrl(String url, bool? auth) async {
+    if (apiKey==""){
+      await init();
+    }
   }
 }
