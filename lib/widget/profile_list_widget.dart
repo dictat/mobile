@@ -18,7 +18,10 @@ class ProfileListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final ProfileProvider profileProvider = Provider.of<ProfileProvider>(context, listen: true);
+
+
     return Consumer<ProfileProvider>(builder: (context, profileProvider, _) {
       return GridView.count(
         crossAxisCount: 2,
@@ -34,7 +37,18 @@ class ProfileListWidget extends StatelessWidget {
           margin: EdgeInsets.all(10.0),
           color: Colors.red.shade100,
           child: ElevatedButton(onPressed: () {
+            Future<String> test = SharedPreferencesManager.get("test","");
+            test.then((value){
+              print(value);
+            });
+
+            Future<List> get = NetworkManager.getRequestUrlJson("https://jsonplaceholder.typicode.com/posts/",false);
+            get.then((value){
+              print(value);
+            });
+
             profileProvider.nextProfileList();
+
             //profileProvider.getProfileList();
           },
           child: Text(profile.username))));
@@ -42,4 +56,6 @@ class ProfileListWidget extends StatelessWidget {
 
     return tmp;
   }
+
+
 }

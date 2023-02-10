@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>We need this to show you what&apos;s currently playing</string>
+	<string>現在聞いている曲を取得します。</string>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>撮影で使用します。</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string></string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>

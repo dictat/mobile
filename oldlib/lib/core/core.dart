@@ -1,2 +1,2 @@
 library core_component;
-export 'local_shared_preferences.dart';
+export '../../../lib/function/local_shared_preferences.dart';

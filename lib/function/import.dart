@@ -16,11 +16,14 @@ export 'package:mobile/widget/profile_list_widget.dart';
 
 // modal
 export 'package:mobile/models/profile_model.dart';
+export 'package:mobile/models/testUser_model.dart';
 
 // function
 export 'package:mobile/function/profile_function.dart';
 export 'package:mobile/enums/tab_item.dart';
 export 'package:mobile/function/theme_cubit.dart';
+export 'package:mobile/function/local_shared_preferences.dart';
+export 'package:mobile/function/network_function.dart';
 
 // UI
 export 'package:mobile/pages/custom_app_bar.dart';

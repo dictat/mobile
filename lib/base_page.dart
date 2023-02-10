@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:mobile/enums/tab_item.dart';
+import 'package:mobile/function/import.dart';
 
 final _navigatorKeys = <TabItem, GlobalKey<NavigatorState>>{
   TabItem.home: GlobalKey<NavigatorState>(),
@@ -17,6 +16,9 @@ class BasePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Future<bool> bloo = SharedPreferencesManager.putString("test","fff");
+
     final currentTab = useState(TabItem.home);
     return Container(
       decoration: BoxDecoration(
