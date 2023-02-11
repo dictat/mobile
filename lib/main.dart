@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/base_page.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'package:mobile/function/import.dart';
 
 void main() {
+  // 処理が終了するまでスプラッシュ
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   runApp(
     ScreenUtilInit(
         designSize: Size(432, 960),

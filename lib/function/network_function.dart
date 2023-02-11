@@ -42,5 +42,6 @@ class NetworkManager {
     if (apiKey==""){
       await init();
     }
+    return "";
   }
 }

@@ -2,15 +2,20 @@ import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
 
 class CountProvider with ChangeNotifier {
-  // 今回状態管理をする変数
-  int counter = 0;
-  //状態を変化させる処理（ボタンを押した時に実行される処理）
-  void incrementCounter() {
-    counter++;
-    notifyListeners();
+  // 通知系のカウント
+  Map<String,int> notificationCounter = {'':0};
+  int getMypageCounter(String code) {
+    int? result =  notificationCounter.containsKey(code) ? notificationCounter[code] : 0;
+    // nullなら
+    result ??= 0;
+    return result;
   }
 
-  String getCounter() {
-    return counter.toString();
+  void setMypageCounter(String code) {
+    if(notificationCounter.containsKey(code) == false) {
+      notificationCounter[code] = 0;
+    }
+    notificationCounter[code] = (notificationCounter[code]! + 1)!;
+    notifyListeners();
   }
 }

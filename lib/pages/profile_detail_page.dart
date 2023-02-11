@@ -16,55 +16,53 @@ class ProfileDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     double widthContainerSize = (MediaQuery.of(context).size.width) - 16;
     var profileFunction = ProfileFunction();
 
-    final CountProvider countProvider = Provider.of<CountProvider>(context, listen: true);
+    final CountProvider countProvider =
+        Provider.of<CountProvider>(context, listen: true);
 
     return Scaffold(
-        appBar: CustomerAppBar("test"),
-        backgroundColor: Colors.transparent,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              ImageContainerView(),
-              Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                  width: widthContainerSize,
-                  child: Column(
-                    children: [
-                      Text(profile.username,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 30.sp,
-                              color: Colors.black)),
-                      Text(
-                          "${profile.birthday} | ${profile.resident} | ${profileFunction.getGenderName(profile.gender)}",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 20.sp,
-                              color: Colors.black)),
-                      Text(profileFunction.getSexualListName(profile.sexual),
-                          style: TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 20.sp,
-                              color: Colors.black)),
-                      Text(countProvider.counter.toString(),),
-                    ],
-                  ),
+      appBar: CustomerAppBar("test"),
+      backgroundColor: Colors.transparent,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ImageContainerView(),
+            Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                width: widthContainerSize,
+                child: Column(
+                  children: [
+                    Text(profile.username,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900,
+                            fontSize: 30.sp,
+                            color: Colors.black)),
+                    Text(
+                        "${profile.birthday} | ${profile.resident} | ${profileFunction.getGenderName(profile.gender)}",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w100,
+                            fontSize: 20.sp,
+                            color: Colors.black)),
+                    Text(profileFunction.getSexualListName(profile.sexual),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w100,
+                            fontSize: 20.sp,
+                            color: Colors.black)),
+                  ],
                 ),
               ),
-              ProfileContentsView(),
-            ],
-          ),
+            ),
+            ProfileContentsView(),
+          ],
         ),
-
+      ),
     );
   }
 
@@ -222,14 +220,13 @@ class _ProfileContentsViewState extends State<ProfileContentsView>
 }
 
 class ImageContainerView extends StatefulWidget {
-
   @override
   _ImageContainerViewState createState() => _ImageContainerViewState();
 }
 
 class _ImageContainerViewState extends State<ImageContainerView> {
   @override
-  void initState(){
+  void initState() {
     profile = Profile.profile;
   }
 

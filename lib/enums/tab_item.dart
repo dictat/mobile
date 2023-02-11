@@ -7,34 +7,34 @@ enum TabItem {
     icon: Icons.home,
       activeIcon: Icons.home_rounded,
     page: HomePage(),
-    badges: true,
+    badges: 0,
   ),
   timeline(
     title: 'タイムライン',
     icon: Icons.timeline,
     page: TimelinePage(),
-    badges: false,
+    badges: 0,
     activeIcon: Icons.home_rounded,
   ),
   community(
     title: 'コミュニティ',
     icon: CommunityMaterialIcons.bulletin_board,
     page: SettingsPage(),
-    badges: false,
+    badges: 0,
     activeIcon: Icons.home_rounded,
   ),
   message(
     title: 'メッセージ',
     icon: CommunityMaterialIcons.message,
     page: ChatPage(),
-    badges: false,
+    badges: 0,
     activeIcon: Icons.home_rounded,
   ),
   settings(
     title: 'マイページ',
     icon: Icons.account_circle_outlined,
     page: SettingsPage(),
-    badges: false,
+    badges: 0,
     activeIcon: Icons.home_rounded,
   );
 
@@ -55,7 +55,7 @@ enum TabItem {
   final Widget page;
 
   /// バッジ
-  final bool badges;
+  final int badges;
 
   /// アクティブアイコン
   final IconData activeIcon;

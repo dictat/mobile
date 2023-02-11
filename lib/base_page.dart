@@ -16,8 +16,10 @@ class BasePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future<bool> bloo = SharedPreferencesManager.putString("test", "fff");
 
-    Future<bool> bloo = SharedPreferencesManager.putString("test","fff");
+    final CountProvider countProvider =
+        Provider.of<CountProvider>(context, listen: true);
 
     final currentTab = useState(TabItem.home);
     return Container(
@@ -64,29 +66,34 @@ class BasePage extends HookWidget {
                   icon: Stack(
                     children: [
                       Icon(tabItem.icon),
-                      tabItem.badges
-                          ? Positioned(
-                              right: 0,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.red,
-                                  shape: BoxShape.circle,
-                                ),
-                                constraints: BoxConstraints(
-                                  minHeight: 16,
-                                  minWidth: 16,
-                                ),
-                                child: Text(
-                                  '99+',
-                                  style: TextStyle(
-                                    fontSize: 6,
-                                    color: Colors.white,
+                      Consumer<CountProvider>(
+                        builder: (context, countProvider, _) {
+                          int s = countProvider.getMypageCounter(tabItem.title);
+                          return s > 0
+                              ? Positioned(
+                                  right: 0,
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      color: Colors.red,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    constraints: const BoxConstraints(
+                                      minHeight: 16,
+                                      minWidth: 16,
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      s > 99 ? '99+' : s.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 6,
+                                        color: Colors.white,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                alignment: Alignment.center,
-                              ),
-                            )
-                          : const SizedBox(),
+                                )
+                              : const SizedBox();
+                        },
+                      ),
                     ],
                   ),
                   label: tabItem.title,
@@ -114,6 +121,8 @@ class BasePage extends HookWidget {
 
             //過去のTAPを保存
             oldTapIndex = index;
+
+            countProvider.setMypageCounter(TabItem.values[index].title);
           },
         ),
       ),
