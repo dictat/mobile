@@ -1,5 +1,7 @@
+import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/base_page.dart';
+import 'package:flutter_login/flutter_login.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'package:mobile/function/import.dart';
@@ -36,8 +38,32 @@ ThemeData lightTheme() {
           bodySmall: TextStyle(color: Color(0xff172774))));
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
+
+  @override
+  State<StatefulWidget> createState() => _MyApp();
+}
+
+class _MyApp extends State<MyApp> {
+  int _counter = 0;
+  Widget _page = BasePage();
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  void initState() {
+    // 例えばログインしているかを判定して切り替える。
+    Future.delayed(Duration(seconds: 3)).then((_) {
+      setState(() {
+        _page = BasePage();
+      });
+      FlutterNativeSplash.remove();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +84,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             title: 'Flutter Demo',
             theme: state,
-            home: const BasePage(),
+            home: _page,
           );
         },
       ),
