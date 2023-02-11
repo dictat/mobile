@@ -69,15 +69,14 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ,
         body: Center(
             child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text("この辺にログインボックス"),
-            openDialogButton(
-                "Sign Up", () => {print("sign up success")}, SignUpView())
-          ],
-        )));
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text("この辺にログインボックス"),
+        openDialogButton(
+            "Sign Up", () => {print("sign up success")}, SignUpView())
+      ],
+    )));
   }
 }

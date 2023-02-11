@@ -48,9 +48,10 @@ dependencies:
   amplify_auth_cognito: ^0.6.12
   amplify_authenticator: ^0.2.4
   amplify_flutter: ^0.6.12
+  flutter_login: ^4.1.1
 
 flutter_native_splash:
-  image: "assets/sample_logo.png"
+  image: "assets/images/sample_logo.png"
   color: "#FFFFFF"
   fullscreen: true
 
@@ -82,6 +83,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

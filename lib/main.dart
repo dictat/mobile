@@ -7,6 +7,11 @@ import 'package:mobile/function/import.dart';
 import 'package:mobile/pages/login/login_page.dart';
 import 'package:mobile/pages/login/signin_page.dart';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_login/flutter_login.dart';
+import 'package:flutter_login/theme.dart';
+
+
 void main() {
   // 処理が終了するまでスプラッシュ
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -60,7 +65,7 @@ class _MyApp extends State<MyApp> {
     // 例えばログインしているかを判定して切り替える。
     Future.delayed(Duration(seconds: 3)).then((_) {
       setState(() {
-        _page = LandingPage();
+        _page = LoginScreen();
       });
       FlutterNativeSplash.remove();
     });
@@ -90,5 +95,87 @@ class _MyApp extends State<MyApp> {
         },
       ),
     );
+  }
+}
+
+
+const users = const {
+  'dribbble@gmail.com': '12345',
+  'hunter@gmail.com': 'hunter',
+};
+
+class LoginScreen extends StatelessWidget {
+  Duration get loginTime => Duration(milliseconds: 2250);
+
+  Future<String?> _authUser(LoginData data) {
+    debugPrint('Name: ${data.name}, Password: ${data.password}');
+    return Future.delayed(loginTime).then((_) {
+      if (!users.containsKey(data.name)) {
+        return 'User not exists';
+      }
+      if (users[data.name] != data.password) {
+        return 'Password does not match';
+      }
+      return null;
+    });
+  }
+
+  Future<String?> _signupUser(SignupData data) {
+    debugPrint('Signup Name: ${data.name}, Password: ${data.password}');
+    return Future.delayed(loginTime).then((_) {
+      return null;
+    });
+  }
+
+  Future<String> _recoverPassword(String name) {
+    debugPrint('Name: $name');
+    return Future.delayed(loginTime).then((_) {
+      if (!users.containsKey(name)) {
+        return 'User not exists';
+      }
+      return "";
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.deepPurple.shade800.withOpacity(0.8),
+                  Colors.deepPurple.shade200.withOpacity(0.8)
+                ])),
+        child: FlutterLogin(
+          userType: LoginUserType.phone,
+          messages: LoginMessages(
+            userHint: '電話番号',
+            passwordHint: 'パスワード',
+            confirmPasswordHint: 'パスワード（確認）',
+            loginButton: 'ログイン',
+            signupButton: '会員登録',
+            forgotPasswordButton: 'もしかしてパスワードを忘れましたか？',
+            recoverPasswordButton: '助けて！',
+            goBackButton: '戻る',
+            confirmPasswordError: 'パスワードが一致しません。',
+            recoverPasswordDescription:
+            '登録時の電話番号を入力してください。',
+            recoverPasswordSuccess: 'Password rescued successfully',
+          ),
+          savedEmail:'test',
+            title: 'タイトル',
+            logo: AssetImage('assets/images/ecorp-lightblue.png'),
+            onLogin: _authUser,
+            onSignup: _signupUser,
+            onSubmitAnimationCompleted: () {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+      builder: (context) => BasePage(),
+      ));
+      },
+        onRecoverPassword: _recoverPassword,
+      ),);
   }
 }
