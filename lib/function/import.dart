@@ -27,11 +27,11 @@ export 'package:mobile/function/network_function.dart';
 
 // UI
 export 'package:mobile/pages/custom_app_bar.dart';
-export 'package:mobile/pages/profile_detail_page.dart';
+export 'package:mobile/pages/home/profile_detail_page.dart';
 export 'package:mobile/pages/custom_app_bar.dart';
 export 'package:mobile/enums/tab_item.dart';
 export 'package:mobile/pages/detail_page.dart';
-export 'package:mobile/pages/chat_page.dart';
-export 'package:mobile/pages/home_page.dart';
+export 'package:mobile/pages/chat/chat_page.dart';
+export 'package:mobile/pages/home/home_page.dart';
 export 'package:mobile/pages/timeline_page.dart';
 export 'package:mobile/pages/settings_page.dart';

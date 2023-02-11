@@ -25,7 +25,7 @@ class CustomerAppBar extends StatelessWidget with PreferredSizeWidget {
               margin: const EdgeInsets.only(right: 20),
               child: const CircleAvatar(
                 backgroundImage: NetworkImage(
-                    'https://avatars.githubusercontent.com/u/7200238?s=64&v=4'),
+                    'https://iconbu.com/wp-content/uploads/2023/01/%E3%83%86%E3%82%A3%E3%83%A9%E3%83%8E%E3%82%B5%E3%82%A6%E3%83%AB%E3%82%B9%E3%81%95%E3%82%93.jpg'),
               ))
         ]);
   }

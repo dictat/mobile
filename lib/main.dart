@@ -1,10 +1,11 @@
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/base_page.dart';
-import 'package:flutter_login/flutter_login.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'package:mobile/function/import.dart';
+import 'package:mobile/pages/login/login_page.dart';
+import 'package:mobile/pages/login/signin_page.dart';
 
 void main() {
   // 処理が終了するまでスプラッシュ
@@ -59,7 +60,7 @@ class _MyApp extends State<MyApp> {
     // 例えばログインしているかを判定して切り替える。
     Future.delayed(Duration(seconds: 3)).then((_) {
       setState(() {
-        _page = BasePage();
+        _page = LandingPage();
       });
       FlutterNativeSplash.remove();
     });
