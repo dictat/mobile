@@ -18,20 +18,44 @@ class TimelinePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: CustomerAppBar(pageTitle),
-      body: Column(
-        children: [
-          Center(
-            child: Consumer<ConnectionProvider>(
-              builder: (context, connectionProvider, _) {
-                return TimeLineWidget(timeline: connectionProvider.getTimeLine());
-              },
+      body: SafeArea(
+        child: DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+              toolbarHeight: 1.h,
+              bottom: const TabBar(
+                tabs: <Widget>[
+                  Tab(icon: Icon(Icons.public), text: "みんな"),
+                  Tab(icon: Icon(Icons.diversity_1), text: "お友達"),
+                ],
+              ),
             ),
+            body: TabBarView(children: <Widget>[
+              Text("test"),
+              Text("fafea"),
+            ]),
           ),
-        ],
+        ),
       ),
     );
   }
 }
+
+/**
+ *         child: Column(
+    children: [
+    Center(
+    child: Consumer<ConnectionProvider>(
+    builder: (context, connectionProvider, _) {
+    return TimeLineWidget(
+    timeline: connectionProvider.getTimeLine());
+    },
+    ),
+    ),
+    ],
+    ),
+ */
 
 class TimeLineWidget extends StatelessWidget {
   TimeLineWidget(
@@ -59,13 +83,10 @@ class TimeLineWidget extends StatelessWidget {
   }
 
   Widget _profileOneView(String profiles, context) {
-    final ConnectionProvider connectionProvider = Provider.of<ConnectionProvider>(context, listen: true);
-    
-    return SafeArea(
-        top:false,
-        bottom:false,
+    final ConnectionProvider connectionProvider =
+        Provider.of<ConnectionProvider>(context, listen: true);
 
-        child: Column(
+    return Column(
       children: [
         Container(
           margin: EdgeInsets.all(8.0.w),
@@ -143,6 +164,6 @@ class TimeLineWidget extends StatelessWidget {
           ),
         ),
       ],
-    ));
+    );
   }
 }
