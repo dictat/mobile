@@ -18,12 +18,16 @@ class TimelinePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: CustomerAppBar(pageTitle),
-      body: Center(
-        child: Consumer<ConnectionProvider>(
-          builder: (context, connectionProvider, _) {
-            return TimeLineWidget(timeline: connectionProvider.getTimeLine());
-          },
-        ),
+      body: Column(
+        children: [
+          Center(
+            child: Consumer<ConnectionProvider>(
+              builder: (context, connectionProvider, _) {
+                return TimeLineWidget(timeline: connectionProvider.getTimeLine());
+              },
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -55,8 +59,8 @@ class TimeLineWidget extends StatelessWidget {
   }
 
   Widget _profileOneView(String profiles, context) {
-    final ConnectionProvider connectionProvider =
-        Provider.of<ConnectionProvider>(context, listen: true);
+    final ConnectionProvider connectionProvider = Provider.of<ConnectionProvider>(context, listen: true);
+    
     return SafeArea(
         top:false,
         bottom:false,

@@ -3,6 +3,17 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:http/retry.dart';
 
+
+class profileAPI implements NetworkManager{
+  /*
+  Future<List<TestUser>> getProfileList(){
+
+    List data = (json.decode(response.body) as Map<String, dynamic>)["data"];
+
+    return null;
+  }*/
+}
+
 class NetworkManager {
   static String apiKey = "";
 

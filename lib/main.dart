@@ -11,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:flutter_login/theme.dart';
 
-
 void main() {
   // 処理が終了するまでスプラッシュ
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -62,13 +61,32 @@ class _MyApp extends State<MyApp> {
   }
 
   void initState() {
-    // 例えばログインしているかを判定して切り替える。
-    Future.delayed(Duration(seconds: 3)).then((_) {
+
+    Future<bool> isLogin = SharedPreferencesManager.get('isLogin',true);
+    isLogin.then((value) {
       setState(() {
-        _page = LoginScreen();
+        if (value == true) {
+          _page = BasePage();
+        } else {
+          _page = LoginScreen();
+        }
       });
       FlutterNativeSplash.remove();
+      return ;
     });
+
+    // 例えばログインしているかを判定して切り替える。
+    /*
+    Future.delayed(Duration(seconds: 3)).then((_) {
+      setState(() {
+        if (isLogin == true) {
+          _page = BasePage();
+        } else {
+          _page = LoginScreen();
+        }
+      });
+      FlutterNativeSplash.remove();
+    });*/
   }
 
   @override
@@ -97,7 +115,6 @@ class _MyApp extends State<MyApp> {
     );
   }
 }
-
 
 const users = const {
   'dribbble@gmail.com': '12345',
@@ -139,43 +156,61 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-      Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.deepPurple.shade800.withOpacity(0.8),
-                  Colors.deepPurple.shade200.withOpacity(0.8)
-                ])),
-        child: FlutterLogin(
-          userType: LoginUserType.phone,
-          messages: LoginMessages(
-            userHint: '電話番号',
-            passwordHint: 'パスワード',
-            confirmPasswordHint: 'パスワード（確認）',
-            loginButton: 'ログイン',
-            signupButton: '会員登録',
-            forgotPasswordButton: 'もしかしてパスワードを忘れましたか？',
-            recoverPasswordButton: '助けて！',
-            goBackButton: '戻る',
-            confirmPasswordError: 'パスワードが一致しません。',
-            recoverPasswordDescription:
-            '登録時の電話番号を入力してください。',
-            recoverPasswordSuccess: 'Password rescued successfully',
+    return Container(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+            Colors.deepPurple.shade800.withOpacity(0.8),
+            Colors.deepPurple.shade200.withOpacity(0.8)
+          ])),
+      child: FlutterLogin(
+        theme: LoginTheme(
+
+          accentColor: Colors.blueAccent,
+          errorColor: Colors.teal,
+          buttonTheme: LoginButtonTheme(
+            backgroundColor: Colors.deepPurple,
+            highlightColor: Colors.red,
+            elevation: 9.0,
+            highlightElevation: 6.0,
           ),
-          savedEmail:'test',
-            title: 'タイトル',
-            logo: AssetImage('assets/images/ecorp-lightblue.png'),
-            onLogin: _authUser,
-            onSignup: _signupUser,
-            onSubmitAnimationCompleted: () {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => BasePage(),
-      ));
-      },
+          inputTheme: InputDecorationTheme(
+            filled:true,
+            disabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey, width: 5),
+            ),
+          ),
+        ),
+        userType: LoginUserType.phone,
+        messages: LoginMessages(
+          userHint: '電話番号',
+          passwordHint: 'パスワード',
+          confirmPasswordHint: 'パスワード（確認）',
+          loginButton: 'ログイン',
+          signupButton: '会員登録',
+          forgotPasswordButton: 'もしかしてパスワードを忘れましたか？',
+          recoverPasswordButton: '助けて！',
+          goBackButton: '戻る',
+          confirmPasswordError: 'パスワードが一致しません。',
+          recoverPasswordDescription: '登録時の電話番号を入力してください。',
+          recoverPasswordSuccess: 'Password rescued successfully',
+          recoverPasswordIntro:'登録時の電話番号を入力してください。',
+
+        ),
+        savedEmail: 'test',
+        title: 'タイトル',
+        logo: AssetImage('assets/images/ecorp-lightblue.png'),
+        onLogin: _authUser,
+        onSignup: _signupUser,
+        onSubmitAnimationCompleted: () {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => BasePage(),
+          ));
+        },
         onRecoverPassword: _recoverPassword,
-      ),);
+      ),
+    );
   }
 }

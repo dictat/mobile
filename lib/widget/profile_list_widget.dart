@@ -18,44 +18,44 @@ class ProfileListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    final ProfileProvider profileProvider = Provider.of<ProfileProvider>(context, listen: true);
-
+    final ProfileProvider profileProvider =
+        Provider.of<ProfileProvider>(context, listen: true);
 
     return Consumer<ProfileProvider>(builder: (context, profileProvider, _) {
       return GridView.count(
         crossAxisCount: 2,
-        children: _profileOneView(_profiles,profileProvider),
+        children: _profileOneView(_profiles, profileProvider),
       );
     });
   }
 
-  List<Widget> _profileOneView(List<Profile> profiles, ProfileProvider profileProvider) {
+  List<Widget> _profileOneView(
+      List<Profile> profiles, ProfileProvider profileProvider) {
     List<Widget> tmp = [];
     for (Profile profile in profiles) {
       tmp.add(Container(
           margin: EdgeInsets.all(10.0),
           color: Colors.red.shade100,
-          child: ElevatedButton(onPressed: () {
-            Future<String> test = SharedPreferencesManager.get("test","");
-            test.then((value){
-              print(value);
-            });
+          child: ElevatedButton(
+              onPressed: () {
+                Future<String> test = SharedPreferencesManager.get("test", "");
+                test.then((value) {
+                  print(value);
+                });
 
-            Future<String> get = NetworkManager.getRequestUrl("https://jsonplaceholder.typicode.com/posts/",false);
-            get.then((value){
-              print(value);
-            });
+                Future<String> get = NetworkManager.getRequestUrl(
+                    "https://jsonplaceholder.typicode.com/posts/", false);
+                get.then((value) {
+                  print(value);
+                });
 
-            profileProvider.nextProfileList();
+                profileProvider.nextProfileList();
 
-            //profileProvider.getProfileList();
-          },
-          child: Text(profile.username))));
+                //profileProvider.getProfileList();
+              },
+              child: Text(profile.username))));
     }
 
     return tmp;
   }
-
-
 }

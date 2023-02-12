@@ -4,6 +4,7 @@ export 'package:google_fonts/google_fonts.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:provider/provider.dart';
 export 'package:community_material_icon/community_material_icon.dart';
+export 'package:mobile/const.dart';
 
 
 // provider

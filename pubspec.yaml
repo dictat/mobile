@@ -49,6 +49,7 @@ dependencies:
   amplify_authenticator: ^0.2.4
   amplify_flutter: ^0.6.12
   flutter_login: ^4.1.1
+  carousel_slider: ^4.2.1
 
 flutter_native_splash:
   image: "assets/images/sample_logo.png"
