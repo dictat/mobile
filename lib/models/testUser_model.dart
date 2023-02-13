@@ -1,4 +1,4 @@
-
+import 'package:mobile/models/models.dart';
 class TestUser {
   final int userId;
   final int id;

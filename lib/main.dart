@@ -2,12 +2,12 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/base_page.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:mobile/function/import.dart';
-import 'package:mobile/pages/login/login_page.dart';
+
 import 'package:mobile/pages/login/signin_page.dart';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:flutter_login/theme.dart';
 
@@ -19,7 +19,9 @@ void main() {
   runApp(
     ScreenUtilInit(
         designSize: Size(432, 960),
-        builder: (BuildContext context, child) => MyApp()),
+        builder: (BuildContext context, child) => ProviderScope(
+              child: MyApp(),
+            )),
   );
 }
 
@@ -61,8 +63,7 @@ class _MyApp extends State<MyApp> {
   }
 
   void initState() {
-
-    Future<bool> isLogin = SharedPreferencesManager.get('isLogin',true);
+    Future<bool> isLogin = SharedPreferencesManager.get('isLogin', true);
     isLogin.then((value) {
       setState(() {
         if (value == true) {
@@ -72,7 +73,7 @@ class _MyApp extends State<MyApp> {
         }
       });
       FlutterNativeSplash.remove();
-      return ;
+      return;
     });
 
     // 例えばログインしているかを判定して切り替える。
@@ -91,28 +92,10 @@ class _MyApp extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider<CountProvider>(create: (_) => CountProvider()),
-        ChangeNotifierProvider(create: (_) => CountProvider()),
-        Provider<ProfileProvider>(create: (_) => ProfileProvider()),
-        ChangeNotifierProvider(create: (_) => ProfileProvider()),
-        Provider<ConnectionProvider>(create: (_) => ConnectionProvider()),
-        ChangeNotifierProvider(create: (_) => ConnectionProvider()),
-        BlocProvider<ThemeCubit>.value(
-          value: ThemeCubit(),
-        ),
-      ],
-      child: BlocBuilder<ThemeCubit, ThemeData>(
-        builder: (context, state) {
-          return MaterialApp(
-            title: 'Flutter Demo',
-            theme: state,
-            home: _page,
-          );
-        },
-      ),
-    );
+        return MaterialApp(
+          title: 'Flutter Demo',
+          home: _page,
+        );
   }
 }
 
@@ -167,7 +150,6 @@ class LoginScreen extends StatelessWidget {
           ])),
       child: FlutterLogin(
         theme: LoginTheme(
-
           accentColor: Colors.blueAccent,
           errorColor: Colors.teal,
           buttonTheme: LoginButtonTheme(
@@ -177,7 +159,7 @@ class LoginScreen extends StatelessWidget {
             highlightElevation: 6.0,
           ),
           inputTheme: InputDecorationTheme(
-            filled:true,
+            filled: true,
             disabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Colors.grey, width: 5),
             ),
@@ -196,8 +178,7 @@ class LoginScreen extends StatelessWidget {
           confirmPasswordError: 'パスワードが一致しません。',
           recoverPasswordDescription: '登録時の電話番号を入力してください。',
           recoverPasswordSuccess: 'Password rescued successfully',
-          recoverPasswordIntro:'登録時の電話番号を入力してください。',
-
+          recoverPasswordIntro: '登録時の電話番号を入力してください。',
         ),
         savedEmail: 'test',
         title: 'タイトル',

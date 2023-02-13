@@ -31,8 +31,8 @@ class SharedPreferencesManager {
   }
 
   static Future<bool> putBool(String key, bool value) async {
-    var _prefs = await SharedPreferences.getInstance();
-    return _prefs.setBool(key, value);
+    var prefs = await SharedPreferences.getInstance();
+    return prefs.setBool(key, value);
   }
 
   static Future<bool> putListString(String key, List<String> value) async {

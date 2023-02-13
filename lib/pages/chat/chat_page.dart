@@ -6,8 +6,6 @@ class ChatPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProfileProvider profileProvider =
-        Provider.of<ProfileProvider>(context, listen: true);
     final pageTitle = TabItem.message.title;
 
     double width = MediaQuery.of(context).size.width;

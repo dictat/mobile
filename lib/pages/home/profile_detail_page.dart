@@ -19,9 +19,6 @@ class ProfileDetailPage extends StatelessWidget {
     double widthContainerSize = (MediaQuery.of(context).size.width) - 16;
     var profileFunction = ProfileFunction();
 
-    final CountProvider countProvider =
-        Provider.of<CountProvider>(context, listen: true);
-
     return Scaffold(
       appBar: CustomerAppBar("test"),
       backgroundColor: Colors.transparent,
@@ -256,10 +253,7 @@ class _ImageContainerViewState extends State<ImageContainerView> {
               borderRadius: BorderRadius.circular(8.0),
               child: GestureDetector(
                 onTap: () {
-                  setState(() {
-                    Provider.of<int>(context);
-                    active = i;
-                  });
+
                 },
                 // 対象の画像を記述
                 child: Container(

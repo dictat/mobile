@@ -15,7 +15,7 @@ class CountProvider with ChangeNotifier {
     if(notificationCounter.containsKey(code) == false) {
       notificationCounter[code] = 0;
     }
-    notificationCounter[code] = (notificationCounter[code]! + 1)!;
+    notificationCounter[code] = (notificationCounter[code]! + 1);
     notifyListeners();
   }
 }

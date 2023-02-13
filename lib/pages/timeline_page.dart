@@ -1,19 +1,17 @@
-import 'package:flutter/material.dart';
 import 'package:mobile/function/import.dart';
+
 import 'package:like_button/like_button.dart';
 
-class TimelinePage extends StatelessWidget {
+final _myData = StateNotifierProvider(((ref)=>MyData()));
+
+class TimelinePage extends HookConsumerWidget {
   const TimelinePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final pageTitle = TabItem.timeline.title;
 
-    // テスト
-    final CountProvider countProvider =
-        Provider.of<CountProvider>(context, listen: true);
-    final ConnectionProvider connectionProvider =
-        Provider.of<ConnectionProvider>(context, listen: true);
+    List<Todo> todos = ref.watch(todosProvider);
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -26,14 +24,21 @@ class TimelinePage extends StatelessWidget {
               toolbarHeight: 1.h,
               bottom: const TabBar(
                 tabs: <Widget>[
-                  Tab(icon: Icon(Icons.public), text: "みんな"),
-                  Tab(icon: Icon(Icons.diversity_1), text: "お友達"),
+                  Tab(icon: Icon(Icons.public),),
+                  Tab(icon: Icon(Icons.diversity_1), ),
                 ],
               ),
             ),
             body: TabBarView(children: <Widget>[
-              Text("test"),
-              Text("fafea"),
+              TimeLineWidget(timeline: [],),
+              TimeLineWidget(timeline: [],),
+              Consumer(
+                  builder: (context, ref, child) =>
+                      GestureDetector(
+                        child: Container(color:Colors.red),
+                          onTap: () {
+
+                          })),
             ]),
           ),
         ),
@@ -58,11 +63,10 @@ class TimelinePage extends StatelessWidget {
  */
 
 class TimeLineWidget extends StatelessWidget {
-  TimeLineWidget(
-      {Key? key,
-      required List<String> timeline,
-      String? nextUrl,
-      Function? nextAction})
+  TimeLineWidget({Key? key,
+    required List<String> timeline,
+    String? nextUrl,
+    Function? nextAction})
       : _timeline = timeline,
         _nextUrl = nextUrl ?? '/profile-detail',
         super(key: key);
@@ -83,9 +87,6 @@ class TimeLineWidget extends StatelessWidget {
   }
 
   Widget _profileOneView(String profiles, context) {
-    final ConnectionProvider connectionProvider =
-        Provider.of<ConnectionProvider>(context, listen: true);
-
     return Column(
       children: [
         Container(
@@ -132,7 +133,7 @@ class TimeLineWidget extends StatelessWidget {
                           Icons.mode_edit_outlined,
                           size: 20.sp,
                         ) //more_horiz
-                        ),
+                    ),
                   ],
                 ),
               ),
@@ -140,7 +141,7 @@ class TimeLineWidget extends StatelessWidget {
                   padding: EdgeInsets.all(9.0.sp),
                   child: Text(
                     "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいう"
-                    "えおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお",
+                        "えおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお",
                     style: TextStyle(fontSize: 18.sp),
                   )),
               Padding(

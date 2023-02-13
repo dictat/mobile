@@ -1,4 +1,5 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
+
 import 'package:mobile/function/import.dart';
 
 final _navigatorKeys = <TabItem, GlobalKey<NavigatorState>>{
@@ -9,17 +10,15 @@ final _navigatorKeys = <TabItem, GlobalKey<NavigatorState>>{
 
 // 一つ前にタップされたタブ
 var oldTapIndex;
-final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-class BasePage extends HookWidget {
+class BasePage extends HookConsumerWidget {
   const BasePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     Future<bool> bloo = SharedPreferencesManager.putString("test", "fff");
 
-    final CountProvider countProvider =
-        Provider.of<CountProvider>(context, listen: true);
+    final countProvider = ref.watch(counts);
 
     final currentTab = useState(TabItem.home);
     return Container(
@@ -66,6 +65,7 @@ class BasePage extends HookWidget {
                   icon: Stack(
                     children: [
                       Icon(tabItem.icon),
+                      /*
                       Consumer<CountProvider>(
                         builder: (context, countProvider, _) {
                           int s = countProvider.getMypageCounter(tabItem.title);
@@ -92,8 +92,10 @@ class BasePage extends HookWidget {
                                   ),
                                 )
                               : const SizedBox();
+
+
                         },
-                      ),
+                      ),*/
                     ],
                   ),
                   label: tabItem.title,
@@ -122,7 +124,6 @@ class BasePage extends HookWidget {
             //過去のTAPを保存
             oldTapIndex = index;
 
-            countProvider.setMypageCounter(TabItem.values[index].title);
           },
         ),
       ),

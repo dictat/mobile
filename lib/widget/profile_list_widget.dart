@@ -18,19 +18,16 @@ class ProfileListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProfileProvider profileProvider =
-        Provider.of<ProfileProvider>(context, listen: true);
 
-    return Consumer<ProfileProvider>(builder: (context, profileProvider, _) {
       return GridView.count(
         crossAxisCount: 2,
-        children: _profileOneView(_profiles, profileProvider),
-      );
-    });
+        children: _profileOneView(_profiles)
+
+    );
   }
 
   List<Widget> _profileOneView(
-      List<Profile> profiles, ProfileProvider profileProvider) {
+      List<Profile> profiles) {
     List<Widget> tmp = [];
     for (Profile profile in profiles) {
       tmp.add(Container(
@@ -49,7 +46,6 @@ class ProfileListWidget extends StatelessWidget {
                   print(value);
                 });
 
-                profileProvider.nextProfileList();
 
                 //profileProvider.getProfileList();
               },

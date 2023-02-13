@@ -7,8 +7,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CountProvider countProvider =
-        Provider.of<CountProvider>(context, listen: true);
     final pageTitle = TabItem.home.title;
 
     return Scaffold(
@@ -39,13 +37,16 @@ class HomePage extends StatelessWidget {
       ),
       appBar: CustomerAppBar(pageTitle),
       backgroundColor: Colors.transparent,
-      body: Consumer<ProfileProvider>(
+
+      body: Text('test'),
+      /*
+      Consumer<ProfileProvider>(
         builder: (context, profileProvider, _) {
           return ProfileListWidget(profiles: profileProvider.getProfileList());
         },
       ),
 
-      /*
+
       Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

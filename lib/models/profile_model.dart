@@ -1,3 +1,4 @@
+import 'package:mobile/models/models.dart';
 class Profile {
   final String title;
   final String subTitle;
