@@ -33,12 +33,15 @@ class CustomerAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(46.0);
 
+
   Widget leadingSelect(BuildContext context) {
     switch (name) {
       case "ホーム":
 
-        return IconButton(
-          icon: Icon(Icons.person_search), onPressed: () => Scaffold.of(context).openDrawer(),
+        return Container(margin: const EdgeInsets.only(left: 20),
+          child: IconButton(
+            icon: Icon(Icons.person_search), onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
         );
       case "タイムライン":
         return const Icon(Icons.add_a_photo);

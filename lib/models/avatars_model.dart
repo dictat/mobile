@@ -1,14 +1,22 @@
-
-
 class Avatars {
   final int id;
   final int userId;
+  final int? timelineId;
   final String url;
   final bool isDefault;
+  final int sort;
   final String createDate;
   final String updateDate;
   final String blur;
 
-  Avatars(this.id, this.userId, this.url, this.isDefault, this.createDate,
-      this.updateDate, this.blur);
+  Avatars(
+      {required this.id,
+      required this.userId,
+      this.timelineId,
+      required this.sort,
+      required this.url,
+      required this.isDefault,
+      required this.createDate,
+      required this.updateDate,
+      required this.blur});
 }
