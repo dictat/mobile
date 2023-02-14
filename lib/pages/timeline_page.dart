@@ -2,8 +2,6 @@ import 'package:mobile/function/import.dart';
 
 import 'package:like_button/like_button.dart';
 
-final _myData = StateNotifierProvider(((ref)=>MyData()));
-
 class TimelinePage extends HookConsumerWidget {
   const TimelinePage({super.key});
 
@@ -11,7 +9,17 @@ class TimelinePage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final pageTitle = TabItem.timeline.title;
 
-    List<Todo> todos = ref.watch(todosProvider);
+    List<TimeLine> timeline = ref.watch(worldTimeLineProvider);
+    //テスト
+    List<TestUser> testpro = ref.watch(testProvider);
+    List<TestUser> testpro2 = ref.watch(testProvider2);
+    if (testpro.length > 0) {
+      print("test:" + testpro.last.userId.toString());
+    }
+    if (testpro2.length > 0) {
+      print("test2:" + testpro2.last.userId.toString());
+    }
+
 
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -24,21 +32,42 @@ class TimelinePage extends HookConsumerWidget {
               toolbarHeight: 1.h,
               bottom: const TabBar(
                 tabs: <Widget>[
-                  Tab(icon: Icon(Icons.public),),
-                  Tab(icon: Icon(Icons.diversity_1), ),
+                  Tab(
+                    icon: Icon(Icons.public),
+                  ),
+                  Tab(
+                    icon: Icon(Icons.diversity_1),
+                  ),
                 ],
               ),
             ),
             body: TabBarView(children: <Widget>[
+              Container(
+                child: GestureDetector(
+                    child: Container(color: Colors.pink, child: Text('ここをタップ')),
+                    onTap: () {
+                      ref.read(testProvider.notifier).addUser();
+                    }),
+              ),
+              Container(
+                child: GestureDetector(
+                    child: Container(color: Colors.red, child: Text('ここをタップ')),
+                    onTap: () {
+                      ref.read(testProvider2.notifier).addUser();
+                    }),
+              ),
+              /*
               TimeLineWidget(timeline: [],),
               TimeLineWidget(timeline: [],),
+               */
+              /*
               Consumer(
                   builder: (context, ref, child) =>
                       GestureDetector(
                         child: Container(color:Colors.red),
                           onTap: () {
 
-                          })),
+                          })),*/
             ]),
           ),
         ),
@@ -63,10 +92,11 @@ class TimelinePage extends HookConsumerWidget {
  */
 
 class TimeLineWidget extends StatelessWidget {
-  TimeLineWidget({Key? key,
-    required List<String> timeline,
-    String? nextUrl,
-    Function? nextAction})
+  TimeLineWidget(
+      {Key? key,
+      required List<String> timeline,
+      String? nextUrl,
+      Function? nextAction})
       : _timeline = timeline,
         _nextUrl = nextUrl ?? '/profile-detail',
         super(key: key);
@@ -133,7 +163,7 @@ class TimeLineWidget extends StatelessWidget {
                           Icons.mode_edit_outlined,
                           size: 20.sp,
                         ) //more_horiz
-                    ),
+                        ),
                   ],
                 ),
               ),
@@ -141,7 +171,7 @@ class TimeLineWidget extends StatelessWidget {
                   padding: EdgeInsets.all(9.0.sp),
                   child: Text(
                     "あいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいう"
-                        "えおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお",
+                    "えおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえおあいうえお",
                     style: TextStyle(fontSize: 18.sp),
                   )),
               Padding(

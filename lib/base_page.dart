@@ -18,8 +18,6 @@ class BasePage extends HookConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
     Future<bool> bloo = SharedPreferencesManager.putString("test", "fff");
 
-    final countProvider = ref.watch(counts);
-
     final currentTab = useState(TabItem.home);
     return Container(
       decoration: BoxDecoration(

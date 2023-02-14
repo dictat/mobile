@@ -3,7 +3,7 @@ export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 
-export 'package:hooks_riverpod/hooks_riverpod.dart';
+
 
 export 'package:community_material_icon/community_material_icon.dart';
 export 'package:mobile/const.dart';

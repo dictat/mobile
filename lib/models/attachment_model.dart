@@ -1,4 +1,4 @@
-import 'package:mobile/models/models.dart';
+
 class Attachment {
   final int id;
   final String name;
@@ -10,8 +10,8 @@ class Attachment {
   final String type;
   final String status;
   final int creatorId;
-  final String create_date;
-  final String update_date;
+  final String createDate;
+  final String updateDate;
   final bool blur;
 
   Attachment(
@@ -25,7 +25,7 @@ class Attachment {
       this.type,
       this.status,
       this.creatorId,
-      this.create_date,
-      this.update_date,
+      this.createDate,
+      this.updateDate,
       this.blur);
 }

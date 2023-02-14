@@ -1,36 +1,54 @@
+// provider
+export 'package:hooks_riverpod/hooks_riverpod.dart';
+export 'package:mobile/provider/provider.dart';
+export 'package:mobile/provider/timeline_provider.dart';
+
 import 'package:mobile/function/import.dart';
 
-class MyData extends StateNotifier<String> {
-  MyData() : super("");
+//一時的
+import 'package:mobile/models/models.dart';
+import 'dart:math' as math;
 
-  void changeState(state) => this.state = state;
-}
-
-final counts = Provider<String>((ref) {
-  return "1";
+final testProvider = StateNotifierProvider<TestdayoNotifier, List<TestUser>>((ref) {
+  return TestdayoNotifier();
 });
 
-final messageProvider = Provider<String>((ref) => 'タップしてみてください：');
-
-final counterProvider = StateNotifierProvider<Counter, int>((ref) {
-  return Counter();
+final testProvider2 = StateNotifierProvider<TestdayoNotifier, List<TestUser>>((ref) {
+  return TestdayoNotifier();
 });
 
-class Counter extends StateNotifier<int> {
-  Counter() : super(0);
+class TestdayoNotifier extends StateNotifier<List<TestUser>> {
+  // Todo リストを空のリストとして初期化します。
+  TestdayoNotifier() : super([]);
 
-  void increment() => state++;
+  void addUser() {
+    TestUser testtest = TestUser(userId: math.Random().nextInt(10000),
+        id: math.Random().nextInt(300),
+        title: randomString(20),
+        body: randomString(300));
+    state = [...state, testtest];
+  }
+
+  String randomString(int length) {
+    String randomStr = "";
+
+    var random = math.Random();
+
+    for (var i = 0; i < length; i++) {
+      int alphaNum = 65 + random.nextInt(26);
+      int isLower = random.nextBool() ? 32 : 0;
+
+      randomStr += String.fromCharCode(alphaNum + isLower);
+    }
+
+    return randomStr;
+  }
 }
-
-final counterProviders = StateProvider((ref) => 0);
-
-final testtest = StateProvider((value) => value);
-
-
 
 @immutable
 class Todo {
-  const Todo({required this.id, required this.description, required this.completed});
+  const Todo(
+      {required this.id, required this.description, required this.completed});
 
   // イミュータブルなクラスのプロパティはすべて `final` にする必要があります。
   final String id;
@@ -48,15 +66,13 @@ class Todo {
   }
 }
 
-
-
 // StateNotifierProvider に渡すことになる StateNotifier クラスです。
 // このクラスではステートを `state` プロパティの外に公開しません。
 // つまり、ステートに関しては public なゲッターやプロパティは作らないということです。
 // public メソッドを通じて UI 側にステートの操作を許可します。
 class TodosNotifier extends StateNotifier<List<Todo>> {
   // Todo リストを空のリストとして初期化します。
-  TodosNotifier(): super([]);
+  TodosNotifier() : super([]);
 
   // Todo の追加
   void addTodo(Todo todo) {
@@ -83,14 +99,14 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
   void toggle(String todoId) {
     state = [
       for (final todo in state)
-      // ID がマッチした Todo のみ、完了ステータスを変更します。
+        // ID がマッチした Todo のみ、完了ステータスを変更します。
         if (todo.id == todoId)
-        // またまたしつこいですが、ステートはイミュータブルなので
-        // Todo クラスに実装した `copyWith` メソッドを使用して
-        // Todo オブジェクトのコピーを作る必要があります。
+          // またまたしつこいですが、ステートはイミュータブルなので
+          // Todo クラスに実装した `copyWith` メソッドを使用して
+          // Todo オブジェクトのコピーを作る必要があります。
           todo.copyWith(completed: !todo.completed)
         else
-        // ID が一致しない Todo は変更しません。
+          // ID が一致しない Todo は変更しません。
           todo,
     ];
   }

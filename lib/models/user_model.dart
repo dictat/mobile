@@ -1,10 +1,5 @@
 import 'package:mobile/models/models.dart';
 
-// 投稿などに付与するユーザ情報　
-// 簡易的なプロフィール
-class InfoUser {
-}
-
 class User {
   final int id;
   final String? avatar; // URL
@@ -36,8 +31,8 @@ class User {
   final bool isFootprintEnable; // 足跡をつける。
   final bool isPrivateMode; // ログインを隠す？
   final String lastActivedAt; // 最終ログイン
-  final String create_date; // ユーザ作成日
-  final String update_date; // 更新日
+  final String createDate; // ユーザ作成日
+  final String updateDate; // 更新日
   final String hobby; // 趣味
   final bool isPhoneVerified; // 電話番号認証
   final String frequentlyPlace; // よくいる場所
@@ -69,24 +64,72 @@ class User {
   final bool liked; // いいねを押した
   final bool likedBack; // いいねをもらった
   final bool matched; // マッチ中
-  final String user_note; // ユーザメモ
+  final String userNote; // ユーザメモ
   final int likes; // いいねの数
 
-  User(this.id, this.avatar, this.username, this.gender, this.birthday,
-      this.age, this.location, this.profile, this.isAvailable, this.status,
-      this.isUser, this.introduction, this.unread, this.isPremium, this.isCheer,
-      this.point, this.hometown, this.height, this.interest, this.education,
-      this.marriageStatus, this.tabacco, this.sake, this.familyStatus,
-      this.newUser, this.isAgeVerified, this.isSalaryVerified,
-      this.isFootprintEnable, this.isPrivateMode, this.lastActivedAt,
-      this.create_date, this.update_date, this.hobby, this.isPhoneVerified,
-      this.frequentlyPlace, this.holiday, this.annualIncome, this.profession,
-      this.resident, this.personalityType, this.tweet, this.lat, this.lng,
-      this.dreamFuture, this.screenshotInLastMonth, this.premiumExp,
-      this.cheerExp, this.deleted, this.referalCode, this.isPrivate,
-      this.sexual, this.weight, this.child, this.lastReadFootprint,
-      this.lastReadAction, this.isHiddenTweet, this.recruit, this.avatars,
-      this.totalCheer, this.reportCount, this.liked, this.likedBack,
-      this.matched, this.user_note, this.likes);
+  User(
+      this.id,
+      this.avatar,
+      this.username,
+      this.gender,
+      this.birthday,
+      this.age,
+      this.location,
+      this.profile,
+      this.isAvailable,
+      this.status,
+      this.isUser,
+      this.introduction,
+      this.unread,
+      this.isPremium,
+      this.isCheer,
+      this.point,
+      this.hometown,
+      this.height,
+      this.interest,
+      this.education,
+      this.marriageStatus,
+      this.tabacco,
+      this.sake,
+      this.familyStatus,
+      this.newUser,
+      this.isAgeVerified,
+      this.isSalaryVerified,
+      this.isFootprintEnable,
+      this.isPrivateMode,
+      this.lastActivedAt,
+      this.hobby,
+      this.isPhoneVerified,
+      this.frequentlyPlace,
+      this.holiday,
+      this.annualIncome,
+      this.profession,
+      this.resident,
+      this.personalityType,
+      this.tweet,
+      this.lat,
+      this.lng,
+      this.dreamFuture,
+      this.screenshotInLastMonth,
+      this.premiumExp,
+      this.cheerExp,
+      this.deleted,
+      this.referalCode,
+      this.isPrivate,
+      this.sexual,
+      this.weight,
+      this.child,
+      this.lastReadFootprint,
+      this.lastReadAction,
+      this.isHiddenTweet,
+      this.recruit,
+      this.avatars,
+      this.totalCheer,
+      this.reportCount,
+      this.liked,
+      this.likedBack,
+      this.matched,
+      this.likes,
+      this.createDate,
+      this.updateDate, this.userNote);
 }
-

@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:mobile/models/models.dart';
+
+@immutable
 class TimeLine {
   final int id;
   final int userId;
@@ -6,11 +9,11 @@ class TimeLine {
   final String content;
   final String? lat;
   final String? lng;
-  final String? location_name;
-  final String? location_fullname;
-  final String? location_country;
-  final String create_date;
-  final String update_date;
+  final String? locationName;
+  final String? locationFullname;
+  final String? locationCountry;
+  final String createDate;
+  final String updateDate;
   final List<int>? likedIds;
   final bool deleted;
   final String? metadata;
@@ -18,22 +21,52 @@ class TimeLine {
   final int totalComments;
   final Attachment? attachment;
 
-  TimeLine(
-      this.id,
-      this.userId,
+  const TimeLine(
+      {required this.id,
+      required this.userId,
       this.attachmentId,
-      this.content,
+      required this.content,
       this.lat,
       this.lng,
-      this.location_name,
-      this.location_fullname,
-      this.location_country,
-      this.create_date,
-      this.update_date,
       this.likedIds,
-      this.deleted,
+      required this.deleted,
       this.metadata,
-      this.liked,
-      this.totalComments,
-      this.attachment);
+      required this.liked,
+      required this.totalComments,
+      this.attachment,
+      this.locationName,
+      this.locationFullname,
+      this.locationCountry,
+      required this.createDate,
+      required this.updateDate});
+
+  TimeLine copyWith({
+    int? id,
+    int? userId,
+    int? attachmentId,
+    String? content,
+    String? lat,
+    String? lng,
+    String? locationName,
+    String? locationFullname,
+    String? locationCountry,
+    String? createDate,
+    String? updateDate,
+    List<int>? likedIds,
+    bool? deleted,
+    String? metadata,
+    bool? liked,
+    int? totalComments,
+    Attachment? attachment,
+  }) {
+    return TimeLine(
+        id: id ?? this.id,
+        userId: userId ?? this.userId,
+        content: content ?? this.content,
+        liked: liked ?? this.liked,
+        deleted: deleted ?? this.deleted,
+        totalComments: totalComments ?? this.totalComments,
+        createDate: createDate ?? this.createDate,
+        updateDate: updateDate ?? this.updateDate);
+  }
 }
