@@ -1,7 +1,6 @@
 import 'package:mobile/models/models.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-@JsonSerializable()
 class User {
 
   final int id;
@@ -135,6 +134,5 @@ class User {
       required this.likes,
       required this.createDate,
       required this.updateDate, required this.userNote});
-
 
 }

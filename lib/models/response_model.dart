@@ -1,6 +1,6 @@
 
 import '../function/import.dart';
-
+part 'response_model.g.dart';
 @immutable
 class TimeLineResponse {
   final List<TimeLine> results;
@@ -27,37 +27,37 @@ class TimeLineResponse {
   }
 }
 
-@immutable
+@JsonSerializable(explicitToJson:true)
 class TestUserResponse {
-  final List<TestUser> results;
-  final int total;
-  final int totalPages;
-  final int currentPage;
-  final int pageSize;
+  @JsonKey(name: 'results') // @JsonKeyアノテーション：multi_select -> multiSelect
+  List<TestUser> results;
+   int total;
+   int totalPages;
+   int currentPage;
+   int pageSize;
 
-  TestUserResponse.fromJson(Map<String, dynamic> json)
-      : results = [],
-        total = json['total'],
-        totalPages = json['totalPages'],
-        pageSize = json['pageSize'],
-        currentPage = json['currentPage'];
+  factory TestUserResponse.fromJson(Map<String, dynamic> json) => _$TestUserResponseFromJson(json);
+  Map<String, dynamic> toJson() => _$TestUserResponseToJson(this);
 
-  const TestUserResponse(
+  TestUserResponse(
       {required this.results,
         required this.total,
         required this.totalPages,
         required this.currentPage,
         required this.pageSize});
 
+  /*
   TestUserResponse copyWith() {
     return const TestUserResponse(
-        results: [],
+        results: new TestUser(),
         total: 0,
         totalPages: 0,
         currentPage:0,
         pageSize:0
     );
   }
+
+   */
 }
 
 

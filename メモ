@@ -1,0 +1,12 @@
+モデルを作成する
+flutter packages pub run build_runner watch
+
+パートにはファイル名と同じ名前＋.g.dartとする
+response_modelならば
+part 'response_model.g.dart';
+
+作りたいモデルの上に下をつける
+@JsonSerializable()
+ネスト・他のクラスを使用する場合
+@JsonSerializable(explicitToJson:true)
+

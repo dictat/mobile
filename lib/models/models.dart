@@ -1,4 +1,4 @@
-
+export 'package:json_annotation/json_annotation.dart';
 export 'package:mobile/models/profile_model.dart';
 export 'package:mobile/models/timeline_model.dart';
 export 'package:mobile/models/attachment_model.dart';
