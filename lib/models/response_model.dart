@@ -36,7 +36,7 @@ class TestUserResponse {
   final int pageSize;
 
   TestUserResponse.fromJson(Map<String, dynamic> json)
-      : results = [new TestUser.fromJson(json['results'])],
+      : results = [],
         total = json['total'],
         totalPages = json['totalPages'],
         pageSize = json['pageSize'],

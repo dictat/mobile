@@ -51,9 +51,9 @@ PODS:
     - Flutter
     - FlutterMacOS
   - Repro (5.9.4)
-  - repro_flutter (3.1.2):
+  - repro_flutter (3.1.3):
     - Flutter
-    - Repro (~> 5.9.3)
+    - Repro (~> 5.9.4)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -125,7 +125,7 @@ SPEC CHECKSUMS:
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   path_provider_foundation: 37748e03f12783f9de2cb2c4eadfaa25fe6d4852
   Repro: df375bc887a7b613be06deb81617653cc0c1c712
-  repro_flutter: 88dd6dc589af339aba46f789a1af631c49b19bd9
+  repro_flutter: 834fdf949d0f64009b3ce0d1a530e68eafbf0ac9
   shared_preferences_foundation: 297b3ebca31b34ec92be11acd7fb0ba932c822ca
   SwiftFormat: 16f04fcde066f40004f51e26bc95bc14dc377d6f
   SwiftLint: 284cea64b6187c5d6bd83e9a548a64104d546447

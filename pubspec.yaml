@@ -38,7 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   repro_flutter: ^3.1.2
   community_material_icon: ^5.9.55
-  google_fonts: ^3.0.1
+  google_fonts: ^4.0.3
   flutter_screenutil: ^5.3.1  # 追加
   like_button: ^2.0.5
   flutter_bloc: ^8.1.1
@@ -49,6 +49,7 @@ dependencies:
   flutter_login: ^4.1.1
   carousel_slider: ^4.2.1
   hooks_riverpod: ^2.2.0
+  json_annotation: ^4.0.1
 
 flutter_native_splash:
   image: "assets/images/sample_logo.png"
@@ -65,6 +66,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  json_serializable: ^6.6.1
+  build_runner: ^2.0.6
 
 
 
