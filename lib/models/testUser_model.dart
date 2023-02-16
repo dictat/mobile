@@ -8,12 +8,14 @@ class TestUser {
   final int id;
   final String title;
   final String body;
+  final Attachment? atach;
 
   const TestUser(
       {required this.userId,
       required this.id,
       required this.title,
-      required this.body});
+      required this.body,
+      this.atach});
 
    TestUser copyWith({int? userId, int? id, String? title, String? body}) {
     return TestUser(
@@ -28,5 +30,6 @@ class TestUser {
       : userId = json['userId'],
         title = json['title'],
         body = json['body'],
-        id = json['id'];
+        id = json['id'],
+        atach = json['atach'];
 }

@@ -9,6 +9,8 @@ class TimelinePage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final pageTitle = TabItem.timeline.title;
 
+    profileAPI temp = profileAPI();
+    temp.getProfileList();
     List<TimeLine> timeline = ref.watch(worldTimeLineProvider);
     //テスト
     List<TestUser> testpro = ref.watch(testProvider);
