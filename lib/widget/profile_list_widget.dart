@@ -40,11 +40,14 @@ class ProfileListWidget extends StatelessWidget {
                   print(value);
                 });
 
+                /*
                 Future<String> get = NetworkManager.getRequestUrl(
                     "https://jsonplaceholder.typicode.com/posts/", false);
                 get.then((value) {
                   print(value);
                 });
+
+                 */
 
 
                 //profileProvider.getProfileList();

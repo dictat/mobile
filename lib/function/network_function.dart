@@ -10,9 +10,10 @@ class profileAPI implements NetworkManager{
 
   Future<String> getProfileList() async {
     //String response = await NetworkManager.getRequestUrl(url:'http://192.168.0.103:3000/hello',auth:false);
-    String response = '{"user": {"userId": 5401,"id":30,"title":"タイトル","body":"ここに本文","attach":{"id":90,"name":"names","altText":"altText","link":"http://www.com","thumbnailUrl":"testt","height":100,"width":100,"type":"mobile","status":"succ","creatorId":"2022","createDate":"2022","updateDate":"4432","blur":"ffff"}}}';
+    String response = '{"results":[{"userId":90,"id":10,"title":"タイトル","body":"bodddd"}],"total":90,"totalPages":34,"currentPage":423,"pageSize":432}';
     var tmp = json.decode(response);
-    //TestUser data = tmp['user'] as User;
+    var tmp2 = new TestUserResponse.fromJson(tmp);
+    print(tmp2);
 
     return "";
   }
