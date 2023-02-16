@@ -37,15 +37,11 @@ class SettingsPage extends StatelessWidget {
               },
               child: const Text('詳細ページへ'),
             ),
-            ElevatedButton(onPressed: (){
-
-              context
-                  .read<ThemeCubit>()
-                  .changeTheme(_themeFlag ? AppTheme.dark : AppTheme.light);
-
-                _themeFlag = !_themeFlag;
-            }, child: const Text('カラー変更'))
-
+            ElevatedButton(
+                onPressed: () {
+                  print("あとで");
+                },
+                child: const Text('カラー変更'))
           ],
         ),
       ),

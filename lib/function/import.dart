@@ -1,5 +1,4 @@
 export 'package:flutter/material.dart';
-export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,7 +20,6 @@ export 'package:mobile/models/models.dart';
 // function
 export 'package:mobile/function/profile_function.dart';
 export 'package:mobile/enums/tab_item.dart';
-export 'package:mobile/function/theme_cubit.dart';
 export 'package:mobile/function/local_shared_preferences.dart';
 export 'package:mobile/function/network_function.dart';
 

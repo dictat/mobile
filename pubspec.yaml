@@ -41,7 +41,6 @@ dependencies:
   google_fonts: ^4.0.3
   flutter_screenutil: ^5.3.1  # 追加
   like_button: ^2.0.5
-  flutter_bloc: ^8.1.1
   shared_preferences: ^2.0.17
   amplify_auth_cognito: ^0.6.12
   amplify_authenticator: ^0.2.4
