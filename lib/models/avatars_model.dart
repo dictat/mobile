@@ -1,7 +1,8 @@
-
 // 顔のmodel
 import 'package:mobile/models/models.dart';
+
 part 'avatars_model.g.dart';
+
 @JsonSerializable()
 class Avatars {
   final int id;
@@ -24,4 +25,9 @@ class Avatars {
       required this.createDate,
       required this.updateDate,
       required this.blur});
+
+  factory Avatars.fromJson(Map<String, dynamic> json) =>
+      _$AvatarsFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AvatarsToJson(this);
 }

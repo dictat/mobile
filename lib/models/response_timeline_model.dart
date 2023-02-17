@@ -1,20 +1,22 @@
-
 import 'package:mobile/models/models.dart';
+
 part 'response_timeline_model.g.dart';
 
-@JsonSerializable(explicitToJson:true)
+@JsonSerializable(explicitToJson: true)
 class TimeLineResponse {
   @JsonKey(name: 'results') // @JsonKeyアノテーション：multi_select -> multiSelect
-   List<TimeLine> results;
-   int total;
-   int totalPages;
-   int currentPage;
-   int pageSize;
+  List<TimeLine> results;
+  int total;
+  int totalPages;
+  int currentPage;
+  int pageSize;
 
-   factory TimeLineResponse.fromJson(Map<String, dynamic> json) => _$TimeLineResponseFromJson(json);
-   Map<String, dynamic> toJson() => _$TimeLineResponseToJson(this);
+  factory TimeLineResponse.fromJson(Map<String, dynamic> json) =>
+      _$TimeLineResponseFromJson(json);
 
-   TimeLineResponse(
+  Map<String, dynamic> toJson() => _$TimeLineResponseToJson(this);
+
+  TimeLineResponse(
       {required this.results,
       required this.total,
       required this.totalPages,
@@ -23,12 +25,7 @@ class TimeLineResponse {
 
   TimeLineResponse copyWith() {
     return TimeLineResponse(
-      results: [],
-      total: 0,
-      totalPages: 0,
-        currentPage:0,
-        pageSize:0
-    );
+        results: [], total: 0, totalPages: 0, currentPage: 0, pageSize: 0);
   }
 }
 

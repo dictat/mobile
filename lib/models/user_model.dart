@@ -1,7 +1,8 @@
 import 'package:mobile/models/models.dart';
+
 part 'user_model.g.dart';
 
-@JsonSerializable(explicitToJson:true)
+@JsonSerializable(explicitToJson: true)
 class User {
   int id;
   String? avatar; // URL
@@ -71,6 +72,7 @@ class User {
   int likes; // いいねの数
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
   Map<String, dynamic> toJson() => _$UserToJson(this);
 
   User(

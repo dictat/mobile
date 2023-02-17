@@ -8,6 +8,7 @@ part of 'timeline_model.dart';
 
 TimeLine _$TimeLineFromJson(Map<String, dynamic> json) => TimeLine(
       id: json['id'] as int,
+      user: User.fromJson(json['user'] as Map<String, dynamic>),
       userId: json['userId'] as int,
       attachmentId: json['attachmentId'] as int?,
       content: json['content'] as String,
@@ -47,4 +48,5 @@ Map<String, dynamic> _$TimeLineToJson(TimeLine instance) => <String, dynamic>{
       'liked': instance.liked,
       'totalComments': instance.totalComments,
       'attachment': instance.attachments.map((e) => e.toJson()).toList(),
+      'user': instance.user.toJson(),
     };

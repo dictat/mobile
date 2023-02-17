@@ -1,7 +1,7 @@
-
 import 'package:mobile/models/models.dart';
 
 part 'testUser_model.g.dart';
+
 @JsonSerializable()
 class TestUser {
   const TestUser(
@@ -15,7 +15,7 @@ class TestUser {
   final String title;
   final String body;
 
-   TestUser copyWith({int? userId, int? id, String? title, String? body}) {
+  TestUser copyWith({int? userId, int? id, String? title, String? body}) {
     return TestUser(
       id: id ?? this.id,
       userId: userId ?? this.userId,
@@ -24,7 +24,8 @@ class TestUser {
     );
   }
 
-  factory TestUser.fromJson(Map<String, dynamic> json) => _$TestUserFromJson(json);
-  Map<String, dynamic> toJson() => _$TestUserToJson(this);
+  factory TestUser.fromJson(Map<String, dynamic> json) =>
+      _$TestUserFromJson(json);
 
+  Map<String, dynamic> toJson() => _$TestUserToJson(this);
 }
