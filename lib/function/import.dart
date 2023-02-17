@@ -1,12 +1,8 @@
 export 'package:flutter/material.dart';
 export 'package:google_fonts/google_fonts.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
-
-
-
 export 'package:community_material_icon/community_material_icon.dart';
 export 'package:mobile/const.dart';
-
 
 // provider
 export 'package:mobile/provider/provider.dart';
@@ -26,8 +22,6 @@ export 'package:mobile/function/network_function.dart';
 // UI
 export 'package:mobile/pages/custom_app_bar.dart';
 export 'package:mobile/pages/home/profile_detail_page.dart';
-export 'package:mobile/pages/custom_app_bar.dart';
-export 'package:mobile/enums/tab_item.dart';
 export 'package:mobile/pages/detail_page.dart';
 export 'package:mobile/pages/chat/chat_page.dart';
 export 'package:mobile/pages/home/home_page.dart';

@@ -18,11 +18,9 @@ class ProfileListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
       return GridView.count(
         crossAxisCount: 2,
         children: _profileOneView(_profiles)
-
     );
   }
 
