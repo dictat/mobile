@@ -12,8 +12,7 @@ class profileAPI implements NetworkManager{
     //String response = await NetworkManager.getRequestUrl(url:'http://192.168.0.103:3000/hello',auth:false);
     String response = '{"results":[{"userId":90,"id":10,"title":"タイトル","body":"bodddd"}],"total":90,"totalPages":34,"currentPage":423,"pageSize":432}';
     var tmp = json.decode(response);
-    var tmp2 = new TestUserResponse.fromJson(tmp);
-    print(tmp2);
+
 
     return "";
   }

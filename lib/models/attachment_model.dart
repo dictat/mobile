@@ -1,5 +1,9 @@
 
-class Attachment {
+import 'package:mobile/models/models.dart';
+part 'attachment_model.g.dart';
+
+@JsonSerializable(explicitToJson:true)
+class Attachments {
   final int id;
   final String name;
   final String altText;
@@ -14,7 +18,10 @@ class Attachment {
   final String updateDate;
   final bool blur;
 
-  Attachment({
+  factory Attachments.fromJson(Map<String, dynamic> json) => _$AttachmentsFromJson(json);
+  Map<String, dynamic> toJson() => _$AttachmentsToJson(this);
+
+  Attachments({
       required this.id,
     required this.name,
     required this.altText,
@@ -29,18 +36,5 @@ class Attachment {
     required  this.updateDate,
     required  this.blur});
 
-  Attachment.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        name = json['name'],
-        altText = json['altText'],
-        link = json['link'],
-        thumbnailUrl = json['thumbnailUrl'],
-        height = json['height'],
-        width = json['width'],
-        type = json['type'],
-        status = json['status'],
-        creatorId = json['creatorId'],
-        createDate = json['createDate'],
-        updateDate = json['updateDate'],
-        blur = json['blur'];
+
 }

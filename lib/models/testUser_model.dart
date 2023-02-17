@@ -1,7 +1,6 @@
 
 import 'package:mobile/models/models.dart';
 
-import '../function/import.dart';
 part 'testUser_model.g.dart';
 @JsonSerializable()
 class TestUser {

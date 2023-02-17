@@ -1,3 +1,8 @@
+
+// 顔のmodel
+import 'package:mobile/models/models.dart';
+part 'avatars_model.g.dart';
+@JsonSerializable()
 class Avatars {
   final int id;
   final int userId;
